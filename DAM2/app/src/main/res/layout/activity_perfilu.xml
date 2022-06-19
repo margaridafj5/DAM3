@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".perfilu">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ad2228"
+        tools:context=".FirstPage">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="154dp"
+            android:layout_height="186dp"
+            android:src="@drawable/red_white_circular_health_club_logo__1_"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="-30dp" />
+
+        <TextView
+            android:id="@+id/Following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Following"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="175dp"
+            tools:layout_editor_absoluteY="217dp" />
+
+        <TextView
+            android:id="@+id/Followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Followers"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="297dp"
+            tools:layout_editor_absoluteY="217dp" />
+
+        <TextView
+            android:id="@+id/numeroSeguir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="205dp"
+            tools:layout_editor_absoluteY="188dp" />
+
+        <TextView
+            android:id="@+id/numeroSeguir2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="328dp"
+            tools:layout_editor_absoluteY="188dp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="416dp"
+            android:layout_height="56dp"
+            android:background="#ad2228"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:tabIndicatorColor="#fcacac"
+            app:tabTextColor="@color/white"
+            tools:layout_editor_absoluteY="289dp">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/ex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exercises" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informations" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/calc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PROGRESSIONS" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/smallsquare"
+            android:layout_width="411dp"
+            android:layout_height="398dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
