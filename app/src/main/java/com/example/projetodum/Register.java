@@ -29,7 +29,7 @@ import java.util.Date;
 public class Register extends AppCompatActivity {
 
 
-    EditText fname, sname, password, email, bdate;
+    EditText username, password, email, bdate;
     RadioGroup gender;
     RadioButton male, female, other;
     TextView login;
@@ -46,8 +46,7 @@ public class Register extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        fname = findViewById(R.id.firstName);
-        sname = findViewById(R.id.sureName);
+        username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
         bdate = findViewById(R.id.birthDate);
@@ -77,13 +76,13 @@ public class Register extends AppCompatActivity {
 
     public void registerUser(){
 
-        String registerName = fname.getText().toString().trim();
-        String registerSurename = sname.getText().toString().trim();
+        String registerUsername = username.getText().toString().trim();
         String registerEmail = email.getText().toString().trim();
         String registerPassword = password.getText().toString().trim();
         String registerDate = bdate.getText().toString().trim();
         int registerGroup = gender.getCheckedRadioButtonId();
         registerGender = "empty";
+        double
 
 
         if (registerGroup == male.getId()){
@@ -94,15 +93,10 @@ public class Register extends AppCompatActivity {
             registerGender = "other";
         }
 
-        if(registerName.isEmpty()) {
-            fname.setError("Campo obrigatório!");
-            fname.requestFocus();
-            return;
-        }
 
-        if(registerSurename.isEmpty()){
-            sname.setError("Campo obrigatório!");
-            fname.requestFocus();
+        if(registerUsername.isEmpty()){
+            username.setError("Campo obrigatório!");
+            username.requestFocus();
             return;
         }
 
@@ -150,7 +144,7 @@ public class Register extends AppCompatActivity {
                         if(task.isSuccessful()){
 
                             DatabaseReference ref = database.getReference("Users");
-                            User user = new User(registerEmail, registerName, registerSurename, registerGender, registerDate, 0, 0);
+                            User user = new User(registerEmail, registerUsername, registerGender, registerDate, 0.0, 0.0, 0.0, 0.0 );
                             String id = mAuth.getCurrentUser().getUid();
                             ref.child(id).setValue(user);
 

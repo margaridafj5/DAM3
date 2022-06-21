@@ -5,12 +5,13 @@ import java.util.Date;
 public class User {
 
     private String email;
-    private String fName;
-    private String lName;
+    private String username;
     private String gender;
     private String bDate;
     private double weight;
     private double height;
+    private double IMC;
+    private double BW;
 
 
     public User(){
@@ -25,21 +26,9 @@ public class User {
         this.email = email;
     }
 
-    public String getfName() {
-        return fName;
-    }
+    public String getUsername() { return username;}
 
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public String getlName() {
-        return lName;
-    }
-
-    public void setlName(String lName) {
-        this.lName = lName;
-    }
+    public void setUsername(String username){ this.username = username; }
 
     public String getGender() {
         return gender;
@@ -73,14 +62,29 @@ public class User {
         this.height = height;
     }
 
-    public User(String email, String fName, String lName, String gender, String bDate, double height, double weight){
+    public double getIMC() {
+        return IMC;
+    }
+
+    public void setIMC(double IMC) {
+        this.IMC = IMC;
+    }
+
+    public double getBW() {
+        return BW;
+    }
+
+    public void setBW(double BW) {this.BW = BW;  }
+
+    public User(String email, String username, String gender, String bDate, double height, double weight, double IMC, double BW){
         this.email = email;
-        this.fName = fName;
-        this.lName = lName;
+        this.username = username;
         this.gender = gender;
         this.bDate = bDate;
         this.height = height;
         this.weight = weight;
+        this.IMC = IMC;
+        this.BW = BW;
 
     }
 

@@ -76,6 +76,21 @@
         app:layout_constraintVertical_bias="0.211" />
 
     <EditText
+        android:id="@+id/username"
+        android:layout_width="269dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint='Username'
+        android:inputType="textEmailAddress"
+
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <EditText
         android:id="@+id/password"
         android:layout_width="269dp"
         android:layout_height="37dp"
@@ -89,36 +104,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.057" />
-
-    <EditText
-        android:id="@+id/firstName"
-        android:layout_width="150dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/sureName"
-        app:layout_constraintHorizontal_bias="0.763"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <EditText
-        android:id="@+id/sureName"
-        android:layout_width="150dp"
-        android:layout_height="37dp"
-        android:ems="10"
-
-        android:hint="Sure Name"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.066" />
 
     <RadioGroup
         android:id="@+id/gender"

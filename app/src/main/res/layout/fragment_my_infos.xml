@@ -10,6 +10,144 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ad2228"
-        tools:context=".FirstPage"/>
+        tools:context=".FirstPage">
+
+        <TextView
+            android:id="@+id/textoUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username:"
+            android:textStyle="bold"
+            android:textColor="#fcacac"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="65dp" />
+
+        <TextView
+            android:id="@+id/textoIdade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Idade:"
+            android:textStyle="bold"
+            android:textColor="#fcacac"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="107dp" />
+
+        <TextView
+            android:id="@+id/textoMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email:"
+            android:textColor="#fcacac"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="149dp" />
+
+        <TextView
+            android:id="@+id/TextoLocalizacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Localização Default:"
+            tools:layout_editor_absoluteX="32dp"
+            android:textColor="#fcacac"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="194dp" />
+
+        <TextView
+            android:id="@+id/textoAltura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Altura:"
+            android:textColor="#fcacac"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="236dp" />
+
+        <TextView
+            android:id="@+id/textoPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Peso:"
+            android:textColor="#fcacac"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="278dp" />
+
+        <TextView
+            android:id="@+id/textoIMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IMC:"
+            android:textColor="#fcacac"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="327dp" />
+
+        <TextView
+            android:id="@+id/textoBW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best Weight:"
+            android:textColor="#fcacac"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="372dp" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="255dp"
+            android:layout_height="18dp"
+            tools:layout_editor_absoluteX="113dp"
+            tools:layout_editor_absoluteY="65dp" />
+
+        <TextView
+            android:id="@+id/Idade"
+            android:layout_width="255dp"
+            android:layout_height="18dp"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="108dp" />
+
+        <TextView
+            android:id="@+id/Email"
+            android:layout_width="255dp"
+            android:layout_height="18dp"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="150dp" />
+
+        <TextView
+            android:id="@+id/Loc"
+            android:layout_width="207dp"
+            android:layout_height="18dp"
+            tools:layout_editor_absoluteX="170dp"
+            tools:layout_editor_absoluteY="195dp" />
+
+        <TextView
+            android:id="@+id/Altura"
+            android:layout_width="207dp"
+            android:layout_height="18dp"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="237dp" />
+
+        <TextView
+            android:id="@+id/Peso"
+            android:layout_width="207dp"
+            android:layout_height="18dp"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="279dp" />
+
+        <TextView
+            android:id="@+id/IMC"
+            android:layout_width="207dp"
+            android:layout_height="18dp"
+            tools:layout_editor_absoluteX="75dp"
+            tools:layout_editor_absoluteY="328dp" />
+
+        <TextView
+            android:id="@+id/BW"
+            android:layout_width="207dp"
+            android:layout_height="18dp"
+            tools:layout_editor_absoluteX="125dp"
+            tools:layout_editor_absoluteY="373dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
