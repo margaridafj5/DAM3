@@ -22,7 +22,6 @@ public class MyInfos extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_infos, container, false);
 
     userUsername = findViewById(R.id.username);
