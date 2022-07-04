@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +19,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -28,6 +32,7 @@ public class Login extends AppCompatActivity {
     FirebaseDatabase database;
     FirebaseAuth mAuth;
     TextView register;
+    public static int isAdmin = 0;
 
 
     @Override
@@ -86,13 +91,33 @@ public class Login extends AppCompatActivity {
                         if(task.isSuccessful()){
 
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            if(user.isEmailVerified()){
-                                startActivity(new Intent(Login.this, FirstPage.class));
-                            } else {
-                                user.sendEmailVerification();
-                                Toast.makeText(Login.this,"Verifique o seu email", Toast.LENGTH_LONG).show();
-                            }
+
+                            database.getReference("Admin").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.getValue() != null) {
+                                        isAdmin = 1;
+                                    } else {
+                                        isAdmin = 0 ;
+                                    }
+                                    if(snapshot.getValue() != null || user.isEmailVerified()) {
+                                        Log.d("Success", "User is verified");
+                                        startActivity(new Intent(Login.this, FirstPage.class));
+                                    } else {
+                                        user.sendEmailVerification();
+                                        Log.d("Failure", "User is not verified");
+                                        Toast.makeText(Login.this, "Verify your email!", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Log.d("Cancelled", error.toString());
+                                }
+                            });
+
                         }else{
+                            Log.d("Cancelled", "Login failed");
                             Toast.makeText(Login.this, "Login falhado", Toast.LENGTH_LONG).show();
                         }
                     }

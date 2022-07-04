@@ -21,15 +21,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
 
 public class Register extends AppCompatActivity {
 
 
-    EditText username, password, email, bdate;
+    EditText fname, sname, password, email, bdate;
     RadioGroup gender;
     RadioButton male, female, other;
     TextView login;
@@ -37,6 +40,7 @@ public class Register extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     String registerGender;
+    int adminId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,8 @@ public class Register extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        username = findViewById(R.id.username);
+        fname = findViewById(R.id.firstName);
+        sname = findViewById(R.id.sureName);
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
         bdate = findViewById(R.id.birthDate);
@@ -76,13 +81,13 @@ public class Register extends AppCompatActivity {
 
     public void registerUser(){
 
-        String registerUsername = username.getText().toString().trim();
+        String registerName = fname.getText().toString().trim();
+        String registerSurename = sname.getText().toString().trim();
         String registerEmail = email.getText().toString().trim();
         String registerPassword = password.getText().toString().trim();
         String registerDate = bdate.getText().toString().trim();
         int registerGroup = gender.getCheckedRadioButtonId();
         registerGender = "empty";
-        double
 
 
         if (registerGroup == male.getId()){
@@ -93,10 +98,15 @@ public class Register extends AppCompatActivity {
             registerGender = "other";
         }
 
+        if(registerName.isEmpty()) {
+            fname.setError("Campo obrigatório!");
+            fname.requestFocus();
+            return;
+        }
 
-        if(registerUsername.isEmpty()){
-            username.setError("Campo obrigatório!");
-            username.requestFocus();
+        if(registerSurename.isEmpty()){
+            sname.setError("Campo obrigatório!");
+            fname.requestFocus();
             return;
         }
 
@@ -143,9 +153,37 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
-                            DatabaseReference ref = database.getReference("Users");
-                            User user = new User(registerEmail, registerUsername, registerGender, registerDate, 0.0, 0.0, 0.0, 0.0 );
                             String id = mAuth.getCurrentUser().getUid();
+
+                            database.getReference().child("Admin").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                    if(!task.getResult().exists()) {
+
+                                        database.getReference("Admin").addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(snapshot.exists()){
+                                                    adminId = (int)snapshot.getChildrenCount();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                Log.d("Exception", error.toString());
+
+                                            }
+                                        });
+                                        database.getReference("Admin").child(id).setValue(adminId);
+                                        Log.d("Admin", "New admin added");
+                                    } else {
+                                        Log.d("Admin", task.getResult().toString());
+                                    }
+                                }
+                            });
+
+                            DatabaseReference ref = database.getReference("Users");
+                            User user = new User(registerEmail, registerName, registerSurename, registerGender, registerDate, 0, 0);
                             ref.child(id).setValue(user);
 
                             FirebaseUser newUser = mAuth.getCurrentUser();
