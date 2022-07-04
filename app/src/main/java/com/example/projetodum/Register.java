@@ -82,7 +82,6 @@ public class Register extends AppCompatActivity {
         String registerDate = bdate.getText().toString().trim();
         int registerGroup = gender.getCheckedRadioButtonId();
         registerGender = "empty";
-        double
 
 
         if (registerGroup == male.getId()){
