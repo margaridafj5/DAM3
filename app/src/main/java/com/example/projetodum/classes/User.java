@@ -17,9 +17,26 @@ public class User {
     private String lName;
     private String gender;
     private String bDate;
+    private String IMC;
+    private String BW;
     private double weight;
     private double height;
 
+    public String getIMC() {
+        return IMC;
+    }
+
+    public void setIMC(String IMC) {
+        this.IMC = IMC;
+    }
+
+    public String getBW() {
+        return BW;
+    }
+
+    public void setBW(String BW) {
+        this.BW = BW;
+    }
 
     public User(){
         //Default constructor
@@ -89,6 +106,8 @@ public class User {
         this.bDate = bDate;
         this.height = height;
         this.weight = weight;
+        this.IMC = IMC;
+        this.BW = BW;
 
     }
 

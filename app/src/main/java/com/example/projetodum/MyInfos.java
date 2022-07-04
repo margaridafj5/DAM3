@@ -1,68 +1,101 @@
 package com.example.projetodum;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.projetodum.classes.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MyInfos extends Fragment {
 
-    EditText userUsername,userEmail, userIdade, userLoc, userPeso, userIMC, userBW;
-    DatabaseReference idRef;
+    TextView userUsername, userEmail, userIdade, userLoc, userPeso, userIMC, userBW;
+    DatabaseReference rootRef;
+    User user;
+    String userID;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_my_infos, null);
+
+
+        userUsername = root.findViewById(R.id.textoUsername);
+        userIdade = root.findViewById(R.id.textoIdade);
+        userEmail = root.findViewById(R.id.textoMail);
+        userLoc = root.findViewById(R.id.textoLocalizacao);
+        userPeso = root.findViewById(R.id.textoPeso);
+        userIMC = root.findViewById(R.id.textoIMC);
+        userBW = root.findViewById(R.id.textoBW);
+
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        rootRef = FirebaseDatabase.getInstance().getReference("Users");
+
+        //Buscar os dados do utilizador na base de dados
+        rootRef.child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //Guardar os dados num objeto
+                user = snapshot.getValue(User.class);
+
+                //Calcular a idade pela data de nascimento
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                LocalDate bDate = LocalDate.parse(user.getbDate(), formatter);
+                LocalDate currentDate = Instant.ofEpochMilli(Calendar.getInstance().getTime().getTime())
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+
+                //User Age
+                String age = String.valueOf(Period.between(bDate, currentDate).getYears());
+
+
+                //Dar display dos dados
+                userUsername.setText(user.getfName() + " " + user.getlName());
+                userIdade.setText(age);
+                userEmail.setText(user.getEmail());
+                userIMC.setText(user.getIMC());
+                userBW.setText(user.getBW());
+                userPeso.setText(String.valueOf(user.getWeight()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Cancelled", error.getMessage());
+            }
+        });
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_infos, container, false);
 
-    userUsername = findViewById(R.id.username);
-    userIdade = findViewById(R.id.Idade);
-    userEmail = findViewById(R.id.Email);
-    userLoc = findViewById(R.id.Loc);
-    userPeso= findViewById(R.id.Peso);
-    userIMC = findViewById(R.id.IMC);
-    userBW = findViewById(R.id.BW);
-
-    id = FirebaseAuth.getInstance().getCurrentUser().getid();
-    rootRef = FirebaseDatabase.getInstance("https://projetodum-9ff4d-default-rtdb.firebaseio.com/").getReference("Users");
-    idRef = rootRef.child(id);
-
-    //buscar dados do utilizador e disposiciona-los na pagina
-        idRef.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot){
-            String email = snapshot.child("email").getValue().toString();
-            String username = snapshot.child("username").getValue().toString();
-            String IMC = snapshot.child("IMC").getValue().toString();
-            String idade = snapshot.child("idade").getValue().toString();
-            String loc = snapshot.child("loc").getValue().toString();
-
-            userEmail.setText(" " + userEmail);
-            userUsername.setText(" " + userUsername);
-           // userIdade.setText(" " + userIdade);
-            userPeso.setText(" " + userPeso);
-            userIMC.setText(" " + userIMC);
-            userLoc.setText(" " + userLoc);
-            userBW.setText(" " + userBW);
-
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    });
     }
-
-
 }
