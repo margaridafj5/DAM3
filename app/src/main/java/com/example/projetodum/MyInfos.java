@@ -11,20 +11,21 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MyInfos extends Fragment {
 
-    EditText username,userEmail, userIdade, userLoc, userPeso, userIMC, userBW;
+    EditText userUsername,userEmail, userIdade, userLoc, userPeso, userIMC, userBW;
+    DatabaseReference idRef;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_infos, container, false);
-    }
 
-    username = findViewById(R.id.username);
+    userUsername = findViewById(R.id.username);
     userIdade = findViewById(R.id.Idade);
     userEmail = findViewById(R.id.Email);
     userLoc = findViewById(R.id.Loc);
@@ -32,32 +33,36 @@ public class MyInfos extends Fragment {
     userIMC = findViewById(R.id.IMC);
     userBW = findViewById(R.id.BW);
 
-    uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    rootRef = FirebaseDatabase.getInstance("https://projetoddam-default-rtdb.europe-west1.firebasedatabase.app/").getReference("users");
-    uidRef = rootRef.child(uid);
+    id = FirebaseAuth.getInstance().getCurrentUser().getid();
+    rootRef = FirebaseDatabase.getInstance("https://projetodum-9ff4d-default-rtdb.firebaseio.com/").getReference("Users");
+    idRef = rootRef.child(id);
 
     //buscar dados do utilizador e disposiciona-los na pagina
-        uidRef.addValueEventListener(new ValueEventListener() {
+        idRef.addValueEventListener(new ValueEventListener() {
         @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
+        public void onDataChange(@NonNull DataSnapshot snapshot){
             String email = snapshot.child("email").getValue().toString();
-            String nome = snapshot.child("nome").getValue().toString();
-            String genero = snapshot.child("generouser").getValue().toString();
+            String username = snapshot.child("username").getValue().toString();
+            String IMC = snapshot.child("IMC").getValue().toString();
             String idade = snapshot.child("idade").getValue().toString();
-            String morada = snapshot.child("morada").getValue().toString();
-            String votesLeft = snapshot.child("numVotosDisponiveis").getValue().toString();
+            String loc = snapshot.child("loc").getValue().toString();
 
-            userEmail.setText(" " + email);
-            username.setText(" " + username);
-            userIdade.setText(" " + idade);
-            userPeso.setText(" " + genero);
-            userIMC.setText(" " + morada);
-            userLoc.setText(" " + username);
-            userBW.setText(" " + username);
-
+            userEmail.setText(" " + userEmail);
+            userUsername.setText(" " + userUsername);
+           // userIdade.setText(" " + userIdade);
+            userPeso.setText(" " + userPeso);
+            userIMC.setText(" " + userIMC);
+            userLoc.setText(" " + userLoc);
+            userBW.setText(" " + userBW);
 
         }
 
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    });
+    }
 
 
 }

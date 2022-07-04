@@ -4,21 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ad2228"
     tools:context=".CompleteInfo">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="418dp"
-        android:layout_height="59dp"
-        android:background="#ad2228"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-
+    <Button
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="72dp"
+        android:backgroundTint="#bd4e53"
+        android:text="SKIP"
+        android:textColor="#FCACAC"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998"
-        app:menu="@menu/bottom_menu" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="144dp"
+        android:backgroundTint="#3BAD22"
+        android:text="SUBMIT"
+        android:textColor="#b1dea7"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="174dp"
+        android:layout_height="204dp"
+        android:src="@drawable/red_white_circular_health_club_logo__1_"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/Altura"
+        android:layout_width="269dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="304dp"
+        android:ems="10"
+        android:hint='Height'
+        android:textColorHint="#f7e9ea"
+        android:inputType="textEmailAddress"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/Peso"
+        android:layout_width="269dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="376dp"
+        android:ems="10"
+        android:hint='Weight'
+        android:textColorHint="#f7e9ea"
+        android:inputType="textEmailAddress"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/Loc"
+        android:layout_width="269dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="232dp"
+        android:ems="10"
+        android:hint='Location'
+        android:textColorHint="#f7e9ea"
+        android:inputType="textEmailAddress"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/Texto"
+        android:layout_width="286dp"
+        android:layout_height="75dp"
+        android:text="For us to provide you with the best experience possible we need to ask you a few more questions...."
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="210dp"
+        android:textColor="#f7e9ea"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
