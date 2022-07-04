@@ -1,17 +1,24 @@
 package com.example.projetodum.classes;
 
+import android.content.Intent;
+
+import com.example.projetodum.BackOffice;
+import com.example.projetodum.FirstPage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Date;
 
 public class User {
 
     private String email;
-    private String username;
+    private String fName;
+    private String lName;
     private String gender;
     private String bDate;
     private double weight;
     private double height;
-    private double IMC;
-    private double BW;
 
 
     public User(){
@@ -26,9 +33,21 @@ public class User {
         this.email = email;
     }
 
-    public String getUsername() { return username;}
+    public String getfName() {
+        return fName;
+    }
 
-    public void setUsername(String username){ this.username = username; }
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
 
     public String getGender() {
         return gender;
@@ -62,29 +81,14 @@ public class User {
         this.height = height;
     }
 
-    public double getIMC() {
-        return IMC;
-    }
-
-    public void setIMC(double IMC) {
-        this.IMC = IMC;
-    }
-
-    public double getBW() {
-        return BW;
-    }
-
-    public void setBW(double BW) {this.BW = BW;  }
-
-    public User(String email, String username, String gender, String bDate, double height, double weight, double IMC, double BW){
+    public User(String email, String fName, String lName, String gender, String bDate, double height, double weight){
         this.email = email;
-        this.username = username;
+        this.fName = fName;
+        this.lName = lName;
         this.gender = gender;
         this.bDate = bDate;
         this.height = height;
         this.weight = weight;
-        this.IMC = IMC;
-        this.BW = BW;
 
     }
 
