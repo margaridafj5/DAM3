@@ -1,19 +1,12 @@
 package com.example.projetodum;
 
-import android.os.Build;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projetodum.classes.User;
@@ -24,17 +17,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 
-public class MyInfos extends Fragment {
+public class MyInfos2 extends AppCompatActivity {
 
     TextView userUsername, userEmail, userIdade, userPeso, userIMC, userBW, userAltura;
     DatabaseReference rootRef;
@@ -43,11 +33,11 @@ public class MyInfos extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_my_infos, container, false);
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_infos2);
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -82,9 +72,7 @@ public class MyInfos extends Fragment {
                 userUsername.setText(snapshot.getValue(User.class).getfName() + " " + snapshot.getValue(User.class).getlName());
                 userIdade.setText(age);
                 userEmail.setText(snapshot.getValue(User.class).getEmail());
-                userIMC.setText(String.valueOf(snapshot.getValue(User.class).getIMC()));
-                userBW.setText(String.valueOf(snapshot.getValue(User.class).getBW()));
-                userPeso.setText(String.valueOf(snapshot.getValue(User.class).getWeight()));
+
 
             }
 
