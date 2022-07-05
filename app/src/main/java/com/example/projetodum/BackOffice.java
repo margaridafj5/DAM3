@@ -86,7 +86,7 @@ public class BackOffice extends AppCompatActivity {
         }
 
         String eID = UUID.randomUUID().toString();
-        Exercises exercise = new Exercises(name, description, Integer.parseInt(calories), Integer.parseInt(nPeople));
+        Exercises exercise = new Exercises(name, description, Integer.parseInt(calories), Integer.parseInt(nPeople), eID);
 
         database.child("Exercises").child(eID).setValue(exercise).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

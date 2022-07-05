@@ -57,8 +57,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         public UserViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
             this.onNoteListener = onNoteListener;
-            name = itemView.findViewById(R.id.name);
-            email = itemView.findViewById(R.id.Description);
+            name = itemView.findViewById(R.id.userName);
+            email = itemView.findViewById(R.id.userEmail);
             itemView.setOnClickListener(this);
         }
 
