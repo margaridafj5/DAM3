@@ -15,15 +15,15 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="127dp"
-            android:layout_height="163dp"
+            android:layout_width="168dp"
+            android:layout_height="205dp"
             android:src="@drawable/red_white_circular_health_club_logo__1_"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.011" />
 
         <TextView
             android:id="@+id/following"
@@ -62,7 +62,7 @@
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.474"
+            app:layout_constraintHorizontal_bias="0.125"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.088" />
@@ -73,13 +73,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
             android:layout_marginEnd="158dp"
-            android:layout_marginBottom="100dp"
             android:backgroundTint="#5f272a"
             android:text="Logout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.752" />
 
         <Button
             android:id="@+id/exercises"
@@ -87,8 +88,12 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#bd4e53"
             android:text="See my exercises"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="284dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.376"
             tools:ignore="MissingConstraints" />
 
         <Button
@@ -97,8 +102,12 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#bd4e53"
             android:text="My infos"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="375dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.486"
             tools:ignore="MissingConstraints" />
 
         <Button
@@ -107,8 +116,12 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#bd4e53"
             android:text="Calculate Things"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="461dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.597"
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
