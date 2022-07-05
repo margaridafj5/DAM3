@@ -9,7 +9,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class User implements Serializable {
 
@@ -22,6 +24,15 @@ public class User implements Serializable {
     private double BW;
     private double weight;
     private double height;
+    private List<String> followingList;
+
+    public List<String> getFollowingList() {
+        return followingList;
+    }
+
+    public void setFollowingList(List<String> followingList) {
+        this.followingList = followingList;
+    }
 
     public double getIMC() {
         return IMC;
@@ -99,7 +110,7 @@ public class User implements Serializable {
         this.height = height;
     }
 
-    public User(String email, String fName, String lName, String gender, String bDate, double height, double weight, double IMC, double BW){
+    public User(String email, String fName, String lName, String gender, String bDate, double height, double weight, double IMC, double BW, List<String> followingList){
         this.email = email;
         this.fName = fName;
         this.lName = lName;
@@ -109,6 +120,8 @@ public class User implements Serializable {
         this.weight = weight;
         this.IMC = IMC;
         this.BW = BW;
+        this.followingList = followingList;
+
 
     }
 

@@ -16,7 +16,15 @@
         <entry key="..\:/DAM3/app/src/main/res/layout/fragment_my_exercises.xml" value="0.24592391304347827" />
         <entry key="..\:/DAM3/app/src/main/res/layout/fragment_my_infos.xml" value="0.264" />
         <entry key="..\:/DAM3/app/src/main/res/layout/fragment_third.xml" value="0.24592391304347827" />
+<<<<<<< Updated upstream
         <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_first_page.xml" value="0.2536231884057971" />
+=======
+        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/drawable/layout_custom_background.xml" value="0.281" />
+        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/drawable/search_view_bg.xml" value="0.332" />
+        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_first_page.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_home_page.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_player_profile.xml" value="0.5" />
+>>>>>>> Stashed changes
         <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_profile.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_search.xml" value="0.2536231884057971" />
         <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/fragment_my_infos.xml" value="0.5474339035769828" />

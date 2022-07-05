@@ -27,7 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Register extends AppCompatActivity {
 
@@ -183,7 +185,9 @@ public class Register extends AppCompatActivity {
                             });
 
                             DatabaseReference ref = database.getReference("Users");
-                            User user = new User(registerEmail, registerName, registerSurename, registerGender, registerDate, 0, 0, 0 , 0);
+                            List<String> followingList = new ArrayList<String>();
+                            followingList.add("empty");
+                            User user = new User(registerEmail, registerName, registerSurename, registerGender, registerDate, 0, 0, 0 , 0, followingList);
                             ref.child(id).setValue(user);
 
                             FirebaseUser newUser = mAuth.getCurrentUser();

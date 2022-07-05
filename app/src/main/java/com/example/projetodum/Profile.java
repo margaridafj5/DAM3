@@ -22,8 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Profile extends FragmentActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     String userID;
@@ -96,8 +94,6 @@ public class Profile extends FragmentActivity {
 
             }
         });
-
-        tabLayout.setupWithViewPager(viewPager);
 
         following.setOnClickListener(new View.OnClickListener() {
             @Override
