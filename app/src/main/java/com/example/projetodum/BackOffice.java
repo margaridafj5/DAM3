@@ -23,7 +23,7 @@ import java.util.UUID;
 public class BackOffice extends AppCompatActivity {
 
     private DatabaseReference database;
-    EditText eName, eDescription, eCalories;
+    EditText eName, eDescription, eCalories, enPeople;
     Button eSubmit;
     TextView eSuccess;
 
@@ -33,6 +33,7 @@ public class BackOffice extends AppCompatActivity {
         setContentView(R.layout.activity_back_office);
 
         eName = findViewById(R.id.exerciseName);
+        enPeople = findViewById(R.id.exercisenPeople);
         eDescription = findViewById(R.id.exerciseDescription);
         eCalories = findViewById(R.id.exerciseCalories);
         eSubmit = findViewById(R.id.exerciseSubmit);
@@ -58,6 +59,7 @@ public class BackOffice extends AppCompatActivity {
         String name = eName.getText().toString().trim();
         String description = eDescription.getText().toString().trim();
         String calories = eCalories.getText().toString().trim();
+        String nPeople = enPeople.getText().toString().trim();
 
         if(name.isEmpty()) {
             eName.setError("Insert the name of the exercise");
@@ -77,8 +79,14 @@ public class BackOffice extends AppCompatActivity {
             return;
         }
 
+        if(nPeople.isEmpty()) {
+            eDescription.setError("Insert the number of persons advised for this exercise");
+            eDescription.requestFocus();
+            return;
+        }
+
         String eID = UUID.randomUUID().toString();
-        Exercises exercise = new Exercises(name, description, Integer.parseInt(calories));
+        Exercises exercise = new Exercises(name, description, Integer.parseInt(calories), Integer.parseInt(nPeople));
 
         database.child("Exercises").child(eID).setValue(exercise).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -88,6 +96,7 @@ public class BackOffice extends AppCompatActivity {
                     eName.setText("");
                     eDescription.setText("");
                     eCalories.setText("");
+                    enPeople.setText("");
                     eSuccess.setVisibility(View.VISIBLE);
 
                 }

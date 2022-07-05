@@ -64,6 +64,21 @@
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"
         app:layout_constraintVertical_bias="0.028" />
 
+    <EditText
+        android:id="@+id/exercisenPeople"
+        android:layout_width="325dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:hint="number of persons to do the exercise"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"
+        app:layout_constraintVertical_bias="0.228" />
+
     <Button
         android:id="@+id/exerciseSubmit"
         android:layout_width="wrap_content"
@@ -72,10 +87,9 @@
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseCalories"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.113" />
 
     <TextView
         android:id="@+id/success"
