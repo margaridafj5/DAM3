@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetodum.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
@@ -22,6 +23,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public UserAdapter(Context context, ArrayList<User> list) {
         this.context = context;
         this.list = list;
+    }
+
+    public void setFilteredList(ArrayList<User> filteredList) {
+        this.list = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull
