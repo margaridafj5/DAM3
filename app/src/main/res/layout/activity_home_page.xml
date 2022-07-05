@@ -24,7 +24,6 @@
         app:layout_constraintVertical_bias="0.998"
         app:menu="@menu/bottom_menu" />
 
-<<<<<<< Updated upstream
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exList"
         android:layout_width="409dp"
@@ -37,13 +36,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-=======
+
     <ListView
         android:layout_width="409dp"
         android:layout_height="669dp"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="2dp" />
->>>>>>> Stashed changes
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

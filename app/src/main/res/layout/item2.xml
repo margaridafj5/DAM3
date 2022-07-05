@@ -38,6 +38,7 @@
             android:padding="6dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit, neque eget sagittis blandit, orci ipsum fringilla elit, sed viverra nisi lorem ullamcorper augue."
             android:textColor="@color/white"
+            android:justificationMode="inter_word"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
