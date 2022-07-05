@@ -1,9 +1,7 @@
 package com.example.projetodum;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,14 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projetodum.classes.User;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Profile extends FragmentActivity {
+public class Profile extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
