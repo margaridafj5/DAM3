@@ -23,7 +23,7 @@ public class Profile extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     String userID;
     Button logout, exercises, infos, calculate;
-    TextView name, following, following_count;
+    TextView name, following, followingCount;
 
 
     @Override
@@ -35,7 +35,7 @@ public class Profile extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         name = findViewById(R.id.name);
         following = findViewById(R.id.following);
-        following_count = findViewById(R.id.following_count);
+        followingCount = findViewById(R.id.following_count);
 
         userID = mAuth.getCurrentUser().getUid();
 
@@ -81,7 +81,12 @@ public class Profile extends AppCompatActivity {
         mDatabase.getReference("Users").child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                name.setText(snapshot.getValue(User.class).getfName() + " " + snapshot.getValue(User.class).getlName());
+                User user = snapshot.getValue(User.class);
+                name.setText(user.getfName() + " " + user.getlName());
+
+                if(!user.getFollowingList().contains("empty")) {
+                    followingCount.setText(String.valueOf(user.getFollowingList().size()));
+                }
             }
 
 
@@ -99,7 +104,7 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        following_count.setOnClickListener(new View.OnClickListener() {
+        followingCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Profile.this, Follow.class));

@@ -20,57 +20,31 @@ import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
-    public Adapter(Context context, ArrayList<User> list) {
-        this.context = context;
-        this.list = list;
-    }
-
-    Context context;
-    ArrayList<User> list;
+    private Context context;
+    private ArrayList<User> list;
     private FirebaseDatabase mDatabase;
     private String listID ="";
+    private OnNoteListener mOnNoteListener;
 
+    public Adapter(Context context, ArrayList<User> list, OnNoteListener onNoteListener) {
+        this.context = context;
+        this.list = list;
+        this.mOnNoteListener = onNoteListener;
+    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
-        return new MyViewHolder(v);
+        return new MyViewHolder(v, mOnNoteListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         User user = list.get(position);
-
-        mDatabase = FirebaseDatabase.getInstance();
-        mDatabase.getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-
-                    User random = dataSnapshot.getValue(User.class);
-                    if(random.getEmail() == user.getEmail() ) listID = dataSnapshot.getKey();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("Cancelled", error.getMessage());
-
-            }
-        });
-
-
-
         holder.name.setText(user.getfName() + " " + user.getlName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Log.d("Recycler ID", listID);
-            }
-        });
+        holder.email.setText(user.getEmail());
 
     }
 
@@ -79,14 +53,29 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         return list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        Adapter.OnNoteListener onNoteListener;
         TextView name;
+        TextView email;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.name);
+            this.onNoteListener = onNoteListener;
+            name = itemView.findViewById(R.id.userName);
+            email = itemView.findViewById(R.id.userEmail);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onNoteListener.onNoteClick(getAdapterPosition());
+
+        }
+    }
+
+    public interface OnNoteListener{
+        void onNoteClick(int position);
     }
 }

@@ -45,15 +45,33 @@ public class Search extends AppCompatActivity implements UserAdapter.OnNoteListe
         adapter = new UserAdapter(this, userList, this);
         recyclerView.setAdapter(adapter);
 
-        mDatabase.getReference("Users").orderByChild(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+
+
+        mDatabase.getReference("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    mDatabase.getReference("Admin").child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot2) {
+                            if(snapshot2.getValue() == null) {
+                                User user = dataSnapshot.getValue(User.class);
+                                userList.add(user);
+                            }
 
-                    User user = dataSnapshot.getValue(User.class);
-                    userList.add(user);
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.d("Cancelled", error.getMessage());
+                        }
+                    });
+
+
                 }
-                adapter.notifyDataSetChanged();
+
 
             }
 

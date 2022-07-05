@@ -35,7 +35,7 @@ public class PlayerProfile extends AppCompatActivity {
 
     private TextView name, age, weight, height, imc, bw, email;
     private User profileUser, user;
-    private Button follow;
+    private Button follow, unfollow;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private String userID;
@@ -51,6 +51,7 @@ public class PlayerProfile extends AppCompatActivity {
         weight= findViewById(R.id.playerWeight);
         height= findViewById(R.id.playerHeight);
         imc= findViewById(R.id.playerIMC);
+        unfollow = findViewById(R.id.unfollowButton);
         follow = findViewById(R.id.followButton);
         bw= findViewById(R.id.playerBW);
         email= findViewById(R.id.playerEmail);
@@ -100,11 +101,10 @@ public class PlayerProfile extends AppCompatActivity {
                     if(user.getFollowingList().contains(userID)) {
                         Log.d("Following List", "Already Following");
                         follow.setEnabled(false);
-                        follow.setText("Following");
-                        follow.setBackgroundColor(2);
+                        follow.setVisibility(View.INVISIBLE);
+                        unfollow.setEnabled(true);
+                        unfollow.setVisibility(View.VISIBLE);
                     }
-
-                    System.out.println(user.getEmail());
                 }
             }
 
@@ -127,8 +127,43 @@ public class PlayerProfile extends AppCompatActivity {
             }
         });
 
+        unfollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                unfollowUser();
+            }
+        });
 
 
+
+
+    }
+
+    private void unfollowUser() {
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
+        List<String> currentList = user.getFollowingList();
+        for(int i = 0; i < currentList.size(); i++) {
+            if(currentList.get(i).matches(userID)) {
+                currentList.remove(i);
+            }
+            if(currentList.isEmpty()) {
+                currentList.add("empty");
+            }
+        }
+        System.out.println(currentList);
+        user.setFollowingList(currentList);
+        mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).setValue(user)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        follow.setEnabled(true);
+                        follow.setVisibility(View.VISIBLE);
+                        unfollow.setEnabled(false);
+                        unfollow.setVisibility(View.INVISIBLE);
+                        Log.d("Following List", "Updated");
+                    }
+                });
 
     }
 
@@ -146,8 +181,9 @@ public class PlayerProfile extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             follow.setEnabled(false);
-                            follow.setText("Following");
-                            follow.setBackgroundColor(2);
+                            follow.setVisibility(View.INVISIBLE);
+                            unfollow.setEnabled(true);
+                            unfollow.setVisibility(View.VISIBLE);
                             Log.d("Following List", "Updated");
                         }
                     });
@@ -160,8 +196,9 @@ public class PlayerProfile extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             follow.setEnabled(false);
-                            follow.setText("Following");
-                            follow.setBackgroundColor(2);
+                            follow.setVisibility(View.INVISIBLE);
+                            unfollow.setEnabled(true);
+                            unfollow.setVisibility(View.VISIBLE);
                             Log.d("Following List", "Updated");
                         }
                     });

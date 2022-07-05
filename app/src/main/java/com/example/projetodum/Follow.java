@@ -1,5 +1,6 @@
 package com.example.projetodum;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -17,14 +18,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Follow extends AppCompatActivity {
+public class Follow extends AppCompatActivity implements Adapter.OnNoteListener {
 
-    RecyclerView recyclerView;
-    Adapter myAdapter;
-    ArrayList<User> list;
-    FirebaseDatabase mDatabase;
-    FirebaseAuth mAuth;
+    private RecyclerView recyclerView;
+    private Adapter myAdapter;
+    private ArrayList<User> list;
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -40,29 +42,49 @@ public class Follow extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter = new Adapter(this, list);
+        myAdapter = new Adapter(this, list, this);
         recyclerView.setAdapter(myAdapter);
 
-        mDatabase.getReference("Users").child("Following").addValueEventListener(new ValueEventListener() {
+
+        mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                    User user = dataSnapshot.getValue(User.class);
-
-                    list.add(user);
-
-                }
-
-                myAdapter.notifyDataSetChanged();
+                User user = snapshot.getValue(User.class);
+                addUser(user.getFollowingList());
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("Cancelled", error.getMessage());
-
             }
         });
+
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        startActivity(new Intent(Follow.this, PlayerProfile.class).putExtra("user", list.get(position)));
+    }
+
+    private void addUser(List<String> tempList) {
+
+        for(int i = 0; i<tempList.size(); i++) {
+            mDatabase.getReference("Users").child(tempList.get(i)).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    list.add(user);
+                    myAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.d("Cancelled", error.getMessage());
+
+                }
+            });
+        }
+
     }
 }
