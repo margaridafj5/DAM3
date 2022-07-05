@@ -2,6 +2,7 @@ package com.example.projetodum.classes;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +12,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetodum.R;
+import com.example.projetodum.Search;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
-    Context context;
-    ArrayList<User> list;
+    private Context context;
+    private ArrayList<User> list;
+    private OnNoteListener mOnNoteListener;
 
-    public UserAdapter(Context context, ArrayList<User> list) {
+
+    public UserAdapter(Context context, ArrayList<User> list, OnNoteListener onNoteListener) {
         this.context = context;
         this.list = list;
+        this.mOnNoteListener = onNoteListener;
     }
 
     public void setFilteredList(ArrayList<User> filteredList) {
@@ -34,7 +43,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public UserAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
-        return new UserViewHolder(v);
+        return new UserViewHolder(v, mOnNoteListener);
     }
 
     @Override
@@ -50,12 +59,25 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return list.size();
     }
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder {
+    public static class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name, email;
-        public UserViewHolder(@NonNull View itemView) {
+        OnNoteListener onNoteListener;
+        public UserViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
+            this.onNoteListener = onNoteListener;
             name = itemView.findViewById(R.id.userName);
             email = itemView.findViewById(R.id.userEmail);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onNoteListener.onNoteClick(getAdapterPosition());
+
+        }
+    }
+
+    public interface OnNoteListener{
+        void onNoteClick(int position);
     }
 }

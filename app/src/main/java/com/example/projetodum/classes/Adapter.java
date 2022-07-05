@@ -27,8 +27,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     Context context;
     ArrayList<User> list;
-    FirebaseDatabase mDatabase;
-    String listID ="";
+    private FirebaseDatabase mDatabase;
+    private String listID ="";
 
 
     @NonNull

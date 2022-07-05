@@ -3,6 +3,9 @@ package com.example.projetodum.classes;
 public class Exercises {
 
     private String name;
+    private String description;
+    private int calories;
+    private int nPeople;
 
     public String getName() {
         return name;
@@ -28,17 +31,23 @@ public class Exercises {
         this.calories = calories;
     }
 
-    private String description;
-    private int calories;
+    public int getnPeople() {
+        return nPeople;
+    }
+
+    public void setnPeople(int nPeople) { this.nPeople = nPeople;  }
+
 
     public Exercises(){
         //Default Constructor
     }
 
-    public Exercises(String name, String description, int calories){
+    public Exercises(String name, String description, int calories, int nPeople){
         this.name = name;
         this.description = description;
         this.calories = calories;
+        this.nPeople = nPeople;
+
 
     }
 

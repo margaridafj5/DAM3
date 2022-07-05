@@ -27,7 +27,7 @@ public class Profile extends FragmentActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     String userID;
-    Button logout;
+    Button logout, exercises, infos, calculate;
     TextView name, following, following_count;
 
 
@@ -38,9 +38,6 @@ public class Profile extends FragmentActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
-
-        tabLayout = findViewById(R.id.tabs);
-        viewPager = findViewById(R.id.smallsquare);
         name = findViewById(R.id.name);
         following = findViewById(R.id.following);
         following_count = findViewById(R.id.following_count);
@@ -53,6 +50,34 @@ public class Profile extends FragmentActivity {
             public void onClick(View view) {
                 mAuth.getInstance().signOut();
                 Intent intent = new Intent(Profile.this, Login.class);
+                startActivity(intent);
+            }
+        });
+
+
+        infos = findViewById(R.id.infos);
+        infos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Profile.this, MyInfos.class);
+                startActivity(intent);
+            }
+        });
+
+        calculate = findViewById(R.id.calculate);
+        calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Profile.this, CalculateThings.class);
+                startActivity(intent);
+            }
+        });
+
+        exercises = findViewById(R.id.exercises);
+        exercises.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Profile.this, MyExercises.class);
                 startActivity(intent);
             }
         });
@@ -73,12 +98,6 @@ public class Profile extends FragmentActivity {
         });
 
         tabLayout.setupWithViewPager(viewPager);
-
-        ProfileTabsMY profileTabsMY = new ProfileTabsMY(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        profileTabsMY.addFragment(new MyExercises(),"ex");
-        profileTabsMY.addFragment(new MyInfos(),"infos");
-        profileTabsMY.addFragment(new CalculateThings(),"calc");
-        viewPager.setAdapter(profileTabsMY);
 
         following.setOnClickListener(new View.OnClickListener() {
             @Override
