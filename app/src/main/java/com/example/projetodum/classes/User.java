@@ -8,9 +8,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
 
     private String email;
     private String fName;

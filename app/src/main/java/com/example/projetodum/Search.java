@@ -6,7 +6,9 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 
 import com.example.projetodum.classes.User;
@@ -19,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Search extends AppCompatActivity {
+public class Search extends AppCompatActivity implements UserAdapter.OnNoteListener {
 
     RecyclerView recyclerView;
     ArrayList<User> userList;
@@ -40,7 +42,7 @@ public class Search extends AppCompatActivity {
         recyclerView = findViewById(R.id.userList);
         userList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UserAdapter(this, userList);
+        adapter = new UserAdapter(this, userList, this);
         recyclerView.setAdapter(adapter);
 
         mDatabase.getReference("Users").orderByChild(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -71,7 +73,6 @@ public class Search extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterList(newText);
-
                 return false;
             }
         });
@@ -89,4 +90,8 @@ public class Search extends AppCompatActivity {
             adapter.setFilteredList(newList);
     }
 
+    @Override
+    public void onNoteClick(int position) {
+        startActivity(new Intent(Search.this, PlayerProfile.class).putExtra("user", userList.get(position)));
+    }
 }
