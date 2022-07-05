@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projetodum.classes.User;
@@ -26,7 +27,7 @@ public class Profile extends FragmentActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     String userID;
-
+    Button logout;
     TextView name, following, following_count;
 
 
@@ -46,11 +47,23 @@ public class Profile extends FragmentActivity {
 
         userID = mAuth.getCurrentUser().getUid();
 
+        logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.getInstance().signOut();
+                Intent intent = new Intent(Profile.this, Login.class);
+                startActivity(intent);
+            }
+        });
+
+
         mDatabase.getReference("Users").child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 name.setText(snapshot.getValue(User.class).getfName() + " " + snapshot.getValue(User.class).getlName());
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
