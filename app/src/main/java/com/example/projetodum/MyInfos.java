@@ -36,25 +36,29 @@ import java.util.Date;
 
 public class MyInfos extends Fragment {
 
-    TextView userUsername, userEmail, userIdade, userLoc, userPeso, userIMC, userBW;
+    TextView userUsername, userEmail, userIdade, userPeso, userIMC, userBW, userAltura;
     DatabaseReference rootRef;
-    User user;
+    User currentUser;
     String userID;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_my_infos, container, false);
 
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_my_infos, null);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-
-        userUsername = root.findViewById(R.id.textoUsername);
-        userIdade = root.findViewById(R.id.textoIdade);
-        userEmail = root.findViewById(R.id.textoMail);
-        userLoc = root.findViewById(R.id.textoLocalizacao);
-        userPeso = root.findViewById(R.id.textoPeso);
-        userIMC = root.findViewById(R.id.textoIMC);
-        userBW = root.findViewById(R.id.textoBW);
+        userUsername = view.findViewById(R.id.username);
+        userIdade = view.findViewById(R.id.Idade);
+        userAltura = view.findViewById(R.id.Altura);
+        userEmail = view.findViewById(R.id.Email);
+        userPeso = view.findViewById(R.id.Peso);
+        userIMC = view.findViewById(R.id.IMC);
+        userBW = view.findViewById(R.id.BW);
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         rootRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -64,13 +68,9 @@ public class MyInfos extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                //Guardar os dados num objeto
-                user = snapshot.getValue(User.class);
-
                 //Calcular a idade pela data de nascimento
-
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                LocalDate bDate = LocalDate.parse(user.getbDate(), formatter);
+                LocalDate bDate = LocalDate.parse(snapshot.getValue(User.class).getbDate(), formatter);
                 LocalDate currentDate = Instant.ofEpochMilli(Calendar.getInstance().getTime().getTime())
                         .atZone(ZoneId.systemDefault())
                         .toLocalDate();
@@ -80,12 +80,13 @@ public class MyInfos extends Fragment {
 
 
                 //Dar display dos dados
-                userUsername.setText(user.getfName() + " " + user.getlName());
+                userUsername.setText(snapshot.getValue(User.class).getfName() + " " + snapshot.getValue(User.class).getlName());
                 userIdade.setText(age);
-                userEmail.setText(user.getEmail());
-                userIMC.setText(user.getIMC());
-                userBW.setText(user.getBW());
-                userPeso.setText(String.valueOf(user.getWeight()));
+                userEmail.setText(snapshot.getValue(User.class).getEmail());
+                userIMC.setText(String.valueOf(snapshot.getValue(User.class).getIMC()));
+                userBW.setText(String.valueOf(snapshot.getValue(User.class).getBW()));
+                userPeso.setText(String.valueOf(snapshot.getValue(User.class).getWeight()));
+
             }
 
             @Override
@@ -94,8 +95,8 @@ public class MyInfos extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_infos, container, false);
 
+
+        // Inflate the layout for this fragment
     }
 }

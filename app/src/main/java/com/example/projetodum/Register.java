@@ -183,7 +183,7 @@ public class Register extends AppCompatActivity {
                             });
 
                             DatabaseReference ref = database.getReference("Users");
-                            User user = new User(registerEmail, registerName, registerSurename, registerGender, registerDate, 0, 0);
+                            User user = new User(registerEmail, registerName, registerSurename, registerGender, registerDate, 0, 0, 0 , 0);
                             ref.child(id).setValue(user);
 
                             FirebaseUser newUser = mAuth.getCurrentUser();

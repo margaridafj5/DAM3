@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class FirstPage extends AppCompatActivity {
 
-    Button logout, createExercise, profile;
+    Button logout, createExercise, profile, search;
     FirebaseAuth mAuth;
 
     @Override
@@ -25,6 +25,7 @@ public class FirstPage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         logout = findViewById(R.id.logout);
+        search = findViewById(R.id.search);
         createExercise = findViewById(R.id.createExercise);
         profile = findViewById(R.id.profile);
         if(Login.isAdmin != 1) createExercise.setVisibility(View.INVISIBLE);
@@ -49,6 +50,13 @@ public class FirstPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(FirstPage.this, Profile.class));
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FirstPage.this, Search.class));
             }
         });
 

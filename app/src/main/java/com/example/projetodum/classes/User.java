@@ -17,24 +17,24 @@ public class User {
     private String lName;
     private String gender;
     private String bDate;
-    private String IMC;
-    private String BW;
+    private double IMC;
+    private double BW;
     private double weight;
     private double height;
 
-    public String getIMC() {
+    public double getIMC() {
         return IMC;
     }
 
-    public void setIMC(String IMC) {
+    public void setIMC(double IMC) {
         this.IMC = IMC;
     }
 
-    public String getBW() {
+    public double getBW() {
         return BW;
     }
 
-    public void setBW(String BW) {
+    public void setBW(double BW) {
         this.BW = BW;
     }
 
@@ -98,7 +98,7 @@ public class User {
         this.height = height;
     }
 
-    public User(String email, String fName, String lName, String gender, String bDate, double height, double weight){
+    public User(String email, String fName, String lName, String gender, String bDate, double height, double weight, double IMC, double BW){
         this.email = email;
         this.fName = fName;
         this.lName = lName;

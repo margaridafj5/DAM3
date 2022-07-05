@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ad2228"
-        tools:context=".FirstPage">
+        tools:context=".FirstPage"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="3dp">
 
         <TextView
             android:id="@+id/textoUsername"
@@ -19,27 +21,28 @@
             android:text="Username:"
             android:textColor="#fcacac"
             android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.091" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <TextView
             android:id="@+id/textoIdade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:text="Idade:"
             android:textColor="#fcacac"
+
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.086"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textoUsername"
-            app:layout_constraintVertical_bias="0.001" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.058" />
 
         <TextView
             android:id="@+id/textoMail"
@@ -49,18 +52,13 @@
             android:text="Email:"
             android:textColor="#fcacac"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/textoIdade"
-            tools:layout_editor_absoluteX="32dp" />
 
-        <TextView
-            android:id="@+id/textoLocalizacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Localização Default:"
-            android:textColor="#fcacac"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="194dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.063" />
 
         <TextView
             android:id="@+id/textoAltura"
@@ -69,8 +67,13 @@
             android:text="Altura:"
             android:textColor="#fcacac"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="236dp" />
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.123" />
 
         <TextView
             android:id="@+id/textoPeso"
@@ -79,95 +82,147 @@
             android:text="Peso:"
             android:textColor="#fcacac"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="278dp" />
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.153" />
 
         <TextView
             android:id="@+id/textoIMC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="IMC:"
             android:textColor="#fcacac"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="327dp" />
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.083"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.188" />
 
         <TextView
             android:id="@+id/textoBW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="132dp"
             android:text="Best Weight:"
             android:textColor="#fcacac"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="372dp" />
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.096"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/username"
             android:layout_width="255dp"
             android:layout_height="18dp"
             android:layout_marginStart="12dp"
+            android:text=""
+
+            android:textColor="#fcacac"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.023"
             app:layout_constraintStart_toEndOf="@+id/textoUsername"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.092" />
+            app:layout_constraintVertical_bias="0.026" />
 
         <TextView
             android:id="@+id/Idade"
             android:layout_width="255dp"
             android:layout_height="18dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="4dp"
+            android:textColor="#fcacac"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.338"
+            app:layout_constraintHorizontal_bias="0.353"
             app:layout_constraintStart_toEndOf="@+id/textoIdade"
             app:layout_constraintTop_toBottomOf="@+id/username"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.001" />
 
         <TextView
             android:id="@+id/Email"
             android:layout_width="255dp"
             android:layout_height="18dp"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="150dp" />
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="64dp"
 
-        <TextView
-            android:id="@+id/Loc"
-            android:layout_width="207dp"
-            android:layout_height="18dp"
-            tools:layout_editor_absoluteX="170dp"
-            tools:layout_editor_absoluteY="195dp" />
+            android:textColor="#fcacac"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textoMail"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/Altura"
             android:layout_width="207dp"
             android:layout_height="18dp"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="237dp" />
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="4dp"
+            android:textColor="#fcacac"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toEndOf="@+id/textoAltura"
+            app:layout_constraintTop_toBottomOf="@+id/Email"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/Peso"
             android:layout_width="207dp"
             android:layout_height="18dp"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="279dp" />
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="24dp"
+            android:textColor="#fcacac"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toEndOf="@+id/textoPeso"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.123" />
 
         <TextView
             android:id="@+id/IMC"
             android:layout_width="207dp"
             android:layout_height="18dp"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="328dp" />
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="27dp"
+            android:textColor="#fcacac"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textoIMC"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.185" />
 
         <TextView
             android:id="@+id/BW"
             android:layout_width="207dp"
             android:layout_height="18dp"
-            tools:layout_editor_absoluteX="125dp"
-            tools:layout_editor_absoluteY="373dp" />
+            android:layout_marginTop="132dp"
+            android:textAlignment="center"
+            android:textColor="#fcacac"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.558"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
