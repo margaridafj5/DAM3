@@ -3,6 +3,8 @@ package com.example.projetodum;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.projetodum.classes.Exercises;
+import com.example.projetodum.classes.ExercisesAdapter;
+import com.example.projetodum.classes.PlayerAdapter;
+import com.example.projetodum.classes.Schedule;
 import com.example.projetodum.classes.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,7 +44,10 @@ public class PlayerProfile extends AppCompatActivity {
     private Button follow, unfollow;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
+    private RecyclerView recyclerView;
+    private PlayerAdapter myAdapter;
     private String userID;
+    private ArrayList<Exercises> list;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -46,6 +55,7 @@ public class PlayerProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_profile);
 
+        list = new ArrayList<>();
         name= findViewById(R.id.name);
         age= findViewById(R.id.playerAge);
         weight= findViewById(R.id.playerWeight);
@@ -58,6 +68,11 @@ public class PlayerProfile extends AppCompatActivity {
         profileUser = (User) getIntent().getSerializableExtra("user");
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
+        recyclerView = findViewById(R.id.scheduleList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        myAdapter = new PlayerAdapter(this, list);
+        recyclerView.setAdapter(myAdapter);
 
         //Calculate age from bDate
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -93,9 +108,12 @@ public class PlayerProfile extends AppCompatActivity {
             }
         });
 
+
+
         mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                printScheduleList(userID);
                 if(snapshot.exists()) {
                     user = snapshot.getValue(User.class);
                     if(user.getFollowingList().contains(userID)) {
@@ -136,6 +154,36 @@ public class PlayerProfile extends AppCompatActivity {
 
 
 
+
+    }
+
+    private void printScheduleList(String Uid) {
+
+
+        System.out.println(Uid);
+        mDatabase.getReference("UserExercise").child(Uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Schedule schedule = dataSnapshot.getValue(Schedule.class);
+                        System.out.print(schedule.getEid());
+                        //ist.add(exercise);
+                    }
+                } else {
+                    System.out.println("Hellooooooooooo");
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Cancelled", error.getMessage());
+
+            }
+        });
 
     }
 

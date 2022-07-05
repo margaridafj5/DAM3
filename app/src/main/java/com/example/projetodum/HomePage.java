@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 package com.example.projetodum;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,4 +19,3 @@ public class HomePage extends AppCompatActivity {
 
     }
 }
->>>>>>> Stashed changes
