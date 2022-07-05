@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoDUm">
         <activity
+<<<<<<< Updated upstream
             android:name=".CalculateThings2"
             android:exported="false" />
         <activity
@@ -20,6 +21,9 @@
             android:exported="false" />
         <activity
             android:name=".item2"
+=======
+            android:name=".ExerciseSchedule"
+>>>>>>> Stashed changes
             android:exported="false" />
         <activity
             android:name=".PlayerProfile"

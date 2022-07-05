@@ -1,11 +1,23 @@
 package com.example.projetodum.classes;
 
-public class Exercises {
+import java.io.Serializable;
+
+public class Exercises implements Serializable {
 
     private String name;
     private String description;
     private int calories;
     private int nPeople;
+
+    public String getEid() {
+        return Eid;
+    }
+
+    public void setEid(String eid) {
+        Eid = eid;
+    }
+
+    private String Eid;
 
     public String getName() {
         return name;
@@ -42,11 +54,12 @@ public class Exercises {
         //Default Constructor
     }
 
-    public Exercises(String name, String description, int calories, int nPeople){
+    public Exercises(String name, String description, int calories, int nPeople, String Eid){
         this.name = name;
         this.description = description;
         this.calories = calories;
         this.nPeople = nPeople;
+        this.Eid = Eid;
 
 
     }

@@ -1,19 +1,37 @@
 package com.example.projetodum;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.projetodum.classes.Adapter;
+import com.example.projetodum.classes.Exercises;
+import com.example.projetodum.classes.ExercisesAdapter;
+import com.example.projetodum.classes.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class FirstPage extends AppCompatActivity {
 
-    Button createExercise, profile, search;
-    FirebaseAuth mAuth;
+    private Button createExercise, profile, search;
+    private FirebaseAuth mAuth;
+    private RecyclerView recyclerView;
+    private ExercisesAdapter myAdapter;
+    private FirebaseDatabase mDatabase;
+    private ArrayList<Exercises> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +41,36 @@ public class FirstPage extends AppCompatActivity {
         System.out.println(Login.isAdmin);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
 
+        recyclerView = findViewById(R.id.exerciseList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        list = new ArrayList<>();
         search = findViewById(R.id.search);
         createExercise = findViewById(R.id.createExercise);
         profile = findViewById(R.id.profile);
+        myAdapter = new ExercisesAdapter(this, list);
+        recyclerView.setAdapter(myAdapter);
+
+        mDatabase.getReference("Exercises").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Exercises exercise = dataSnapshot.getValue(Exercises.class);
+                    list.add(exercise);
+                }
+
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Cancelled", error.getMessage());
+
+            }
+        });
+
         if(Login.isAdmin != 1) createExercise.setVisibility(View.INVISIBLE);
 
 

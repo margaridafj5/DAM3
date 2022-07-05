@@ -50,6 +50,7 @@ public class Follow extends AppCompatActivity implements Adapter.OnNoteListener 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
+                if(!user.getFollowingList().contains("empty"))
                 addUser(user.getFollowingList());
 
             }
@@ -69,6 +70,7 @@ public class Follow extends AppCompatActivity implements Adapter.OnNoteListener 
 
     private void addUser(List<String> tempList) {
 
+        list.clear();
         for(int i = 0; i<tempList.size(); i++) {
             mDatabase.getReference("Users").child(tempList.get(i)).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
