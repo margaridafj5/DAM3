@@ -7,20 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.projetodum.R;
-import com.example.projetodum.Search;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder> {
 
@@ -40,7 +36,7 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Exer
     @NonNull
     @Override
     public ExercisesAdapter.ExercisesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item2, parent, false);
         return new ExercisesViewHolder(v);
     }
 
@@ -59,6 +55,48 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Exer
         holder.calories.setText(Calories);
         holder.nPeople.setText(nPeople);
 
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Eid = FirebaseAuth.getInstance().getCurrentExercises().getEid();
+                rootRef = FirebaseDatabase.getInstance("https://projetodum-9ff4d-default-rtdb.firebaseio.com/").getReference("Exercises");
+                uidRef = rootRef.child(Eid);
+
+                EidRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String numVotosDisponiveis = snapshot.child("numVotosDisponiveis").getValue().toString();
+                        votesLeft = Integer.parseInt(numVotosDisponiveis);
+                        Log.d("Votos", "numVotos = " + numVotosDisponiveis);
+
+                        if(votesLeft > 0 && canVote) {
+                            numberOfVotes[0] = numberOfVotes[0] + 1;
+                            databaseReference = FirebaseDatabase.getInstance("https://projetoddam-default-rtdb.europe-west1.firebasedatabase.app/").getReference("ideias").child(id).child("numVotes");
+                            databaseReference.setValue(numberOfVotes[0]);
+                            uidRef.child("numVotosDisponiveis").setValue(votesLeft - 1);
+                            canVote = false;
+                            ((Votar)context).refreshActivity();
+
+                        }
+                        else if (votesLeft < 1){
+
+                            Toast.makeText(v.getContext(), "Esse exercicio já foi adicionado", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+            }
+        });
+
 
 
     }
@@ -66,6 +104,23 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Exer
     @Override
     public int getItemCount() {
         return ExerciseID.size();
+    }
+
+    public static class ExercisesViewHolder extends RecyclerView.ViewHolder{
+
+        TextView name,description,calories,nPeople;
+
+
+        public ExercisesViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.name);
+            description = itemView.findViewById(R.id.description);
+            nPeople = itemView.findViewById(R.id.nPeople);
+            calories = itemView.findViewById(R.id.calories);
+
+
+        }
     }
 
 

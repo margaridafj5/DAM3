@@ -1,8 +1,6 @@
 package com.example.projetodum.classes;
 
 import android.content.Context;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetodum.R;
-import com.example.projetodum.Search;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
@@ -65,8 +57,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         public UserViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
             this.onNoteListener = onNoteListener;
-            name = itemView.findViewById(R.id.userName);
-            email = itemView.findViewById(R.id.userEmail);
+            name = itemView.findViewById(R.id.name);
+            email = itemView.findViewById(R.id.Description);
             itemView.setOnClickListener(this);
         }
 
