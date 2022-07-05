@@ -28,20 +28,21 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:layout_goneMarginTop="10dp"
         android:layout_marginTop="11dp"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,6 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:layout_constraintVertical_bias="0.023"
+        app:layout_goneMarginTop="10dp"
         app:queryHint="Search for user ..." />
 
 
