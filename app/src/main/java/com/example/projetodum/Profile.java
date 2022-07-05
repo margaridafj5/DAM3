@@ -97,6 +97,13 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        followingCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Profile.this, Follow.class));
+            }
+        });
+
 
 
     }

@@ -1,5 +1,6 @@
 package com.example.projetodum.classes;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Schedule {
@@ -20,23 +21,23 @@ public class Schedule {
         this.status = status;
     }
 
-    public Date getSchedule() {
+    public String getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(Date schedule) {
+    public void setSchedule(String schedule) {
         this.schedule = schedule;
     }
 
     private String Eid;
     private int status;
-    private Date schedule;
+    private String schedule;
 
     public Schedule(){
         //Default constructor
     }
 
-    public Schedule(String Eid, int status, Date schedule) {
+    public Schedule(String Eid, int status, String schedule) {
         this.Eid = Eid;
         this.status = status;
         this.schedule = schedule;

@@ -61,7 +61,7 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Exer
         holder.nPeople.setText(String.valueOf(exercise.getnPeople()) + " people");
 
 
-        holder.addExerciseButton.setOnClickListener(new View.OnClickListener() {
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 context.startActivity(new Intent(context, ExerciseSchedule.class).putExtra("exercise", exercise));

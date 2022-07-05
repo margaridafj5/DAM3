@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-package com.example.projetodum.classes;
 
 import android.content.Context;
 import android.util.Log;

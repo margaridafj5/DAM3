@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.projetodum.classes.Exercises;
+import com.example.projetodum.classes.Schedule;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +33,7 @@ public class ExerciseSchedule extends AppCompatActivity {
 
     private Exercises exercise;
     private TextView exerciseName, exerciseDescription, exerciseNumber, exerciseCalories;
-    private Button schedule;
+    private Button scheduleButton;
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private String Uid;
@@ -46,7 +49,7 @@ public class ExerciseSchedule extends AppCompatActivity {
         exerciseDescription = findViewById(R.id.eDescription);
         exerciseNumber = findViewById(R.id.eNumber);
         exerciseCalories = findViewById(R.id.eCalories);
-        schedule = findViewById(R.id.schedule);
+        scheduleButton = findViewById(R.id.schedule);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
 
@@ -57,7 +60,7 @@ public class ExerciseSchedule extends AppCompatActivity {
         exerciseNumber.setText(String.valueOf(exercise.getnPeople()));
         exerciseCalories.setText(String.valueOf(exercise.getCalories()));
 
-        schedule.setOnClickListener(new View.OnClickListener() {
+        scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateTimeDialog();
@@ -71,12 +74,13 @@ public class ExerciseSchedule extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        exerciseList.add(dataSnapshot.getValue().toString());
+                        Schedule schedule = dataSnapshot.getValue(Schedule.class);
+                        exerciseList.add(schedule.getEid());
                     }
 
                     if(exerciseList.contains(exercise.getEid())) {
-                        schedule.setEnabled(false);
-                        schedule.setText("Already Scheduled");
+                        scheduleButton.setEnabled(false);
+                        scheduleButton.setText("Already Scheduled");
                     }
                 }
             }
@@ -108,7 +112,23 @@ public class ExerciseSchedule extends AppCompatActivity {
 
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yy HH:mm");
                         if(exerciseList.isEmpty()) {
-                            mDatabase.getReference("UserExercise").child(Uid).child("0").setValue()
+                            Schedule schedule = new Schedule(exercise.getEid(), 0, simpleDateFormat.format(calendar.getTime()));
+                            mDatabase.getReference("UserExercise").child(Uid).child("0").setValue(schedule).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    scheduleButton.setEnabled(false);
+                                    scheduleButton.setText("Already Scheduled");
+                                }
+                            });
+                        } else {
+                            Schedule schedule = new Schedule(exercise.getEid(), 0, simpleDateFormat.format(calendar.getTime()));
+                            mDatabase.getReference("UserExercise").child(Uid).child(String.valueOf(exerciseList.size())).setValue(schedule).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    scheduleButton.setEnabled(false);
+                                    scheduleButton.setText("Already Scheduled");
+                                }
+                            });
                         }
 
                     }

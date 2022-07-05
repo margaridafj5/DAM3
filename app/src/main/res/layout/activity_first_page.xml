@@ -12,18 +12,14 @@
         android:id="@+id/imageView"
         android:layout_width="411dp"
         android:layout_height="498dp"
-<<<<<<< Updated upstream
-        app:srcCompat="@drawable/red_white_circular_health_club_logo__1_"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="115dp"/>
-=======
+        tools:layout_editor_absoluteY="115dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/red_white_circular_health_club_logo__1_" />
->>>>>>> Stashed changes
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exerciseList"
