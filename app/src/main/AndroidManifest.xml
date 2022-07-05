@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoDUm">
         <activity
+            android:name=".CalculateThings2"
+            android:exported="false" />
+        <activity
+            android:name=".BWcalcular"
+            android:exported="false" />
+        <activity
+            android:name=".IMCcalcular"
+            android:exported="false" />
+        <activity
             android:name=".item2"
             android:exported="false" />
         <activity

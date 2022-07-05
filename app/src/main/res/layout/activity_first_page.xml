@@ -13,7 +13,7 @@
         android:layout_height="498dp"
         app:srcCompat="@drawable/red_white_circular_health_club_logo__1_"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="115dp" />
+        tools:layout_editor_absoluteY="115dp"/>
 
 
     <Button

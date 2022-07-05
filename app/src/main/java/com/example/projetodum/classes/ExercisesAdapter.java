@@ -55,7 +55,7 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Exer
         holder.calories.setText(Calories);
         holder.nPeople.setText(nPeople);
 
-        holder.addButton.setOnClickListener(new View.OnClickListener() {
+        holder.addExerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

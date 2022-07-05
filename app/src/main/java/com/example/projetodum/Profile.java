@@ -63,7 +63,7 @@ public class Profile extends AppCompatActivity {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Profile.this, CalculateThings.class);
+                Intent intent = new Intent(Profile.this, CalculateThings2.class);
                 startActivity(intent);
             }
         });
@@ -97,19 +97,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        following.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Profile.this, Follow.class));
-            }
-        });
-
-        followingCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Profile.this, Follow.class));
-            }
-        });
 
 
     }

@@ -23,4 +23,13 @@
     <string name="title_activity_perfil">Perfil</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="very_severely_underweight"> Very Severely UnderWeight</string>
+    <string name="severely_underweight"> Severely UnderWeight</string>
+    <string name="underweight">UnderWeight</string>
+    <string name="normal"> Normal</string>
+    <string name="overweight"> OverWeight</string>
+    <string name="obese_class_i"> Obese Class I</string>
+    <string name="obese_class_ii"> Obese Class II</string>
+    <string name="obese_class_iii"> Obese Class III</string>
+    
 </resources>
