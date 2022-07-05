@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoDUm">
         <activity
+            android:name=".MyEvolution"
+            android:exported="false" />
+        <activity
             android:name=".CalculateThings2"
             android:exported="false" />
         <activity
