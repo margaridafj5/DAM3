@@ -5,21 +5,22 @@
       <map>
         <entry key="..\:/DAM3/app/src/main/res/layout/activity_complete_info.xml" value="0.264" />
         <entry key="..\:/DAM3/app/src/main/res/layout/activity_first_page.xml" value="0.21195652173913043" />
+        <entry key="..\:/DAM3/app/src/main/res/layout/activity_follow.xml" value="0.23020833333333332" />
         <entry key="..\:/DAM3/app/src/main/res/layout/activity_home_page.xml" value="0.21195652173913043" />
         <entry key="..\:/DAM3/app/src/main/res/layout/activity_login2.xml" value="0.24592391304347827" />
         <entry key="..\:/DAM3/app/src/main/res/layout/activity_perfilu.xml" value="0.24592391304347827" />
+        <entry key="..\:/DAM3/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/DAM3/app/src/main/res/layout/activity_register.xml" value="0.21195652173913043" />
+        <entry key="..\:/DAM3/app/src/main/res/layout/activity_search.xml" value="0.23020833333333332" />
         <entry key="..\:/DAM3/app/src/main/res/layout/fragment_calculate_things.xml" value="0.21195652173913043" />
         <entry key="..\:/DAM3/app/src/main/res/layout/fragment_my_exercises.xml" value="0.24592391304347827" />
         <entry key="..\:/DAM3/app/src/main/res/layout/fragment_my_infos.xml" value="0.264" />
         <entry key="..\:/DAM3/app/src/main/res/layout/fragment_third.xml" value="0.24592391304347827" />
-        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/drawable/search_view_bg.xml" value="0.332" />
         <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_first_page.xml" value="0.2536231884057971" />
         <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_profile.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/activity_search.xml" value="0.2536231884057971" />
         <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/fragment_my_infos.xml" value="0.5474339035769828" />
-        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/item.xml" value="0.1" />
-        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Gonca/Documents/GitHub/DAM3/app/src/main/res/layout/item.xml" value="0.2536231884057971" />
       </map>
     </option>
   </component>
