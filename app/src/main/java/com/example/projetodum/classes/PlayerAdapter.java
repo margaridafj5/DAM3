@@ -35,6 +35,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     @Override
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         Exercises exercises = list.get(position);
+
         holder.exerciseName.setText(exercises.getName());
         holder.exerciseCalories.setText(String.valueOf(exercises.getCalories()));
         holder.exerciseDescription.setText(exercises.getDescription());

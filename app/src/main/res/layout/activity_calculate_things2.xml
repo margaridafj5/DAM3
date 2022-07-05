@@ -3,21 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalculateThings2">
+    tools:context=".CalculateThings2"
+    android:background="#ad2228">
 
-    <Button
-        android:id="@+id/IMC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="100dp"
-        android:layout_marginEnd="323dp"
-        android:layout_marginBottom="583dp"
-        android:gravity="center"
-        android:text="IMC"
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="235dp"
+        android:layout_height="274dp"
+        android:src="@drawable/red_white_circular_health_club_logo__1_"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083" />
+
+    <Button
+        android:id="@+id/IMC"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#bd4e53"
+        android:text="Calculate IMC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/BW"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#bd4e53"
+        android:text="Calculate BW"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

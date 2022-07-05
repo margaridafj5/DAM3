@@ -169,7 +169,7 @@ public class PlayerProfile extends AppCompatActivity {
                     for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Schedule schedule = dataSnapshot.getValue(Schedule.class);
                         System.out.print(schedule.getEid());
-                        //ist.add(exercise);
+                        //list.add(exercise);
                     }
                 } else {
                     System.out.println("Hellooooooooooo");

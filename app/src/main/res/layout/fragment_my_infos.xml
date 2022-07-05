@@ -91,38 +91,6 @@
             app:layout_constraintVertical_bias="0.153" />
 
         <TextView
-            android:id="@+id/textoIMC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="IMC:"
-            android:textColor="#fcacac"
-            android:textStyle="bold"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.083"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.188" />
-
-        <TextView
-            android:id="@+id/textoBW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="132dp"
-            android:text="Best Weight:"
-            android:textColor="#fcacac"
-            android:textStyle="bold"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.096"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
             android:id="@+id/username"
             android:layout_width="255dp"
             android:layout_height="18dp"
@@ -194,35 +162,6 @@
             app:layout_constraintStart_toEndOf="@+id/textoPeso"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.123" />
-
-        <TextView
-            android:id="@+id/IMC"
-            android:layout_width="207dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="27dp"
-            android:textColor="#fcacac"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textoIMC"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.185" />
-
-        <TextView
-            android:id="@+id/BW"
-            android:layout_width="207dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="132dp"
-            android:textAlignment="center"
-            android:textColor="#fcacac"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.558"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

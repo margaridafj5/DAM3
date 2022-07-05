@@ -58,7 +58,6 @@ public class MyInfos extends Fragment {
         userEmail = view.findViewById(R.id.Email);
         userPeso = view.findViewById(R.id.Peso);
         userIMC = view.findViewById(R.id.IMC);
-        userBW = view.findViewById(R.id.BW);
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         rootRef = FirebaseDatabase.getInstance().getReference("Users");

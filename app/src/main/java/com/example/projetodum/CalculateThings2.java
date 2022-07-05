@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class CalculateThings2 extends AppCompatActivity {
 
-    Button IMC, bw;
+    Button IMC, BW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,14 @@ public class CalculateThings2 extends AppCompatActivity {
             startActivity(new Intent(CalculateThings2.this, IMCcalcular.class));
         }
     });
+
+        BW= findViewById(R.id.BW);
+        BW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View bw) {
+                startActivity(new Intent(CalculateThings2.this, BWcalcular.class));
+            }
+        });
     }
 
 }
