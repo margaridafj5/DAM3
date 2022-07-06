@@ -77,6 +77,7 @@ public class CompleteInfo extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         startActivity(new Intent(CompleteInfo.this, FirstPage.class));
+                        finish();
                     }
                 });
 

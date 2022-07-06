@@ -100,6 +100,7 @@ public class Login extends AppCompatActivity {
                                     if(snapshot.getValue() != null || user.isEmailVerified()) {
                                         Log.d("Success", "User is verified");
                                         startActivity(new Intent(Login.this, FirstPage.class));
+                                        finish();
                                     } else {
                                         user.sendEmailVerification();
                                         Log.d("Failure", "User is not verified");

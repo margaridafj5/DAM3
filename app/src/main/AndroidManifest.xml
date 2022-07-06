@@ -16,6 +16,9 @@
             android:name=".MyEvolution"
             android:exported="false" />
         <activity
+            android:name=".MyExercises"
+            android:exported="false" />
+        <activity
             android:name=".CalculateThings2"
             android:exported="false" />
         <activity

@@ -6,41 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".IMCcalcular"
     android:orientation="vertical"
+    android:background="@color/main"
     android:gravity="center">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="25dp"
-        android:text="BMI CALCULATOR"></TextView>
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="BODY MASS INDEX CALCULATOR"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Your weight in kg:"
-        android:layout_marginHorizontal="25dp"></TextView>
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:layout_marginHorizontal="25dp"/>
     <EditText
         android:id="@+id/weight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:textSize="17dp"
         android:layout_marginHorizontal="25dp"
         android:padding="12dp"
         android:inputType="numberDecimal"
-        android:layout_marginVertical="15dp"></EditText>
+        android:layout_marginVertical="15dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="17dp"
         android:text="Your heigh in cm:"
-        android:layout_marginHorizontal="25dp"></TextView>
+        android:layout_marginHorizontal="25dp"/>
     <EditText
         android:id="@+id/height"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:backgroundTint="@color/white"
         android:padding="12dp"
         android:inputType="numberDecimal"
-        android:layout_marginVertical="15dp"></EditText>
+        android:layout_marginVertical="15dp"/>
 
     <Button
         android:id="@+id/calc"
@@ -55,11 +69,16 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="17dp"
         android:textAlignment="center"
         android:text="Your result:"/>
 
     <TextView
         android:id="@+id/result"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
