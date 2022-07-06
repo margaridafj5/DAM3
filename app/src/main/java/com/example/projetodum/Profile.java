@@ -22,7 +22,7 @@ public class Profile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     String userID;
-    Button logout, exercises, infos, calculate;
+    Button logout, exercises, infos, calculate, progress;
     TextView name, following, followingCount;
 
 
@@ -35,6 +35,7 @@ public class Profile extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         name = findViewById(R.id.name);
         following = findViewById(R.id.following);
+        progress = findViewById(R.id.evolution);
         followingCount = findViewById(R.id.following_count);
 
         userID = mAuth.getCurrentUser().getUid();
@@ -101,6 +102,13 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Profile.this, Follow.class));
+            }
+        });
+
+        progress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Profile.this, MyEvolution.class));
             }
         });
 
