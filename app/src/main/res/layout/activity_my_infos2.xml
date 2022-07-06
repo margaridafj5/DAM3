@@ -56,7 +56,8 @@
             android:textColor="#fcacac"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/textoUsername"
-            tools:layout_editor_absoluteX="36dp" />
+            tools:layout_editor_absoluteX="36dp"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textoMail"
