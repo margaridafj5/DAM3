@@ -24,7 +24,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class MyInfos2 extends AppCompatActivity {
+public class MyInfos extends AppCompatActivity {
 
     TextView userUsername, userEmail, userIdade, userPeso, userIMC, userBW, userAltura;
     DatabaseReference rootRef;
@@ -36,18 +36,12 @@ public class MyInfos2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_infos2);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        userUsername = view.findViewById(R.id.username);
-        userIdade = view.findViewById(R.id.Idade);
-        userAltura = view.findViewById(R.id.Altura);
-        userEmail = view.findViewById(R.id.Email);
-        userPeso = view.findViewById(R.id.Peso);
-        userIMC = view.findViewById(R.id.IMC);
+        userUsername = findViewById(R.id.username);
+        userIdade = findViewById(R.id.Idade);
+        userAltura = findViewById(R.id.Altura);
+        userEmail = findViewById(R.id.Email);
+        userPeso = findViewById(R.id.Peso);
+        userIMC = findViewById(R.id.IMC);
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         rootRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -82,8 +76,5 @@ public class MyInfos2 extends AppCompatActivity {
             }
         });
 
-
-
-        // Inflate the layout for this fragment
     }
 }
