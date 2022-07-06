@@ -75,7 +75,7 @@
         android:text="Your result:"/>
 
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/imcResult"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"

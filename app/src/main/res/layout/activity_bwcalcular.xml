@@ -75,7 +75,7 @@
         android:text="Your result:"/>
 
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/bwResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"

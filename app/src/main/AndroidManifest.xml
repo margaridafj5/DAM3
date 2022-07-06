@@ -10,16 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoDUm">
         <activity
+            android:name=".YourFavorites"
+            android:exported="false" />
+        <activity
+            android:name=".MyExercises"
+            android:exported="false" />
+        <activity
             android:name=".MyInfos"
             android:exported="false" />
         <activity
             android:name=".MyEvolution"
             android:exported="false" />
         <activity
-            android:name=".MyExercises"
-            android:exported="false" />
-        <activity
-            android:name=".CalculateThings2"
+            android:name=".CalculateThings"
             android:exported="false" />
         <activity
             android:name=".BWcalcular"

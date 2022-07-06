@@ -56,7 +56,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         mAuth = FirebaseAuth.getInstance();
 
 
-        /*mDatabase.getReference("UserLike").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        mDatabase.getReference("UserLike").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
@@ -72,7 +72,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("Cancelled", error.getMessage());
             }
-        });*/
+        });
 
 
 

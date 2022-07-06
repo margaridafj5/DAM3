@@ -63,7 +63,7 @@ public class Profile extends AppCompatActivity {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Profile.this, CalculateThings2.class);
+                Intent intent = new Intent(Profile.this, CalculateThings.class);
                 startActivity(intent);
             }
         });

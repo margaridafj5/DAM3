@@ -5,17 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.example.projetodum.classes.Exercises;
 import com.example.projetodum.classes.PlayerAdapter;
 import com.example.projetodum.classes.RecyclerViewInterface;
-import com.example.projetodum.classes.Schedule;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,44 +20,36 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyExercises extends AppCompatActivity implements RecyclerViewInterface {
+public class YourFavorites extends AppCompatActivity implements RecyclerViewInterface {
 
     private ArrayList<Exercises> list;
     private RecyclerView recyclerView;
     private PlayerAdapter myAdapter;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
-    private LinearLayout yourFavorites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_exercises);
+        setContentView(R.layout.activity_your_favorites);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         list = new ArrayList<>();
 
-        recyclerView = findViewById(R.id.myExerciseList);
-        yourFavorites = findViewById(R.id.buttonFavorite);
+        recyclerView = findViewById(R.id.favoriteList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myAdapter = new PlayerAdapter(this, list, this);
         recyclerView.setAdapter(myAdapter);
 
-        mDatabase.getReference("UserExercise").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        mDatabase.getReference("UserLike").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
                 if(snapshot.exists()){
-                    for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Schedule schedule = dataSnapshot.getValue(Schedule.class);
-                        printScheduleList(schedule.getEid());
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        printFavorite(dataSnapshot.getValue().toString());
                     }
-                } else {
-                    System.out.println("Hellooooooooooo");
                 }
-
-
             }
 
             @Override
@@ -71,35 +59,23 @@ public class MyExercises extends AppCompatActivity implements RecyclerViewInterf
             }
         });
 
-        yourFavorites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyExercises.this, YourFavorites.class));
-            }
-        });
     }
 
-    private void printScheduleList(String Eid) {
+    private void printFavorite(String Eid) {
 
         mDatabase.getReference("Exercises").child(Eid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    Exercises exercise = snapshot.getValue(Exercises.class);
-                    list.add(exercise);
-                    myAdapter.notifyDataSetChanged();
-                }
+                Exercises exercise = snapshot.getValue(Exercises.class);
+                list.add(exercise);
+                myAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("Cancelled", error.getMessage());
-
             }
         });
-
-
-
     }
 
     @Override
