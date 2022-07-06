@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoDUm">
         <activity
-            android:name=".MyInfos2"
+            android:name=".MyInfos"
             android:exported="false" />
         <activity
             android:name=".MyEvolution"

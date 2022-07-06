@@ -110,10 +110,13 @@ public class PlayerProfile extends AppCompatActivity {
 
 
 
+
+
+
         mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                printScheduleList(userID);
+                getScheduleList(userID);
                 if(snapshot.exists()) {
                     user = snapshot.getValue(User.class);
                     if(user.getFollowingList().contains(userID)) {
@@ -157,10 +160,9 @@ public class PlayerProfile extends AppCompatActivity {
 
     }
 
-    private void printScheduleList(String Uid) {
+    private void getScheduleList(String Uid) {
 
 
-        System.out.println(Uid);
         mDatabase.getReference("UserExercise").child(Uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -168,8 +170,7 @@ public class PlayerProfile extends AppCompatActivity {
                 if(snapshot.exists()){
                     for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Schedule schedule = dataSnapshot.getValue(Schedule.class);
-                        System.out.print(schedule.getEid());
-                        //list.add(exercise);
+                        printScheduleList(schedule.getEid());
                     }
                 } else {
                     System.out.println("Hellooooooooooo");
@@ -184,6 +185,29 @@ public class PlayerProfile extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void printScheduleList(String Eid) {
+
+        mDatabase.getReference("Exercises").child(Eid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    Exercises exercise = snapshot.getValue(Exercises.class);
+                    list.add(exercise);
+                    myAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Cancelled", error.getMessage());
+
+            }
+        });
+
+
 
     }
 

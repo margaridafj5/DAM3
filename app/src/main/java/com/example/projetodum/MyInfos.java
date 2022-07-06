@@ -25,7 +25,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class MyInfos2 extends AppCompatActivity {
+public class MyInfos extends AppCompatActivity {
 
     TextView userUsername, userEmail, userIdade, userPeso, userAltura;
     Button addInfo;
