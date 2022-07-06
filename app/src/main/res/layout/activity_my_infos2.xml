@@ -40,7 +40,6 @@
             android:text="Username:"
             android:textColor="#fcacac"
             android:textStyle="bold"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
@@ -49,14 +48,15 @@
             app:layout_constraintVertical_bias="0.025" />
 
         <TextView
-            android:id="@+id/Peso"
-            android:layout_width="207dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="29dp"
+            android:id="@+id/textoIdade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Idade:"
             android:textColor="#fcacac"
-            app:layout_constraintTop_toBottomOf="@+id/Altura"
-            app:layout_constraintStart_toEndOf="@+id/textoPeso" />
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/textoUsername"
+            tools:layout_editor_absoluteX="36dp" />
 
         <TextView
             android:id="@+id/textoMail"

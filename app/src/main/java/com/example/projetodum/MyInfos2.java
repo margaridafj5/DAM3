@@ -1,22 +1,21 @@
         package com.example.projetodum;
 
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
         import androidx.appcompat.app.AppCompatActivity;
-
         import android.content.Intent;
         import android.os.Bundle;
-
         import android.view.View;
         import android.widget.Button;
         import android.widget.TextView;
-
         import com.example.projetodum.classes.User;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
-
+        import java.time.Instant;
+        import java.time.LocalDate;
         import java.time.Period;
+        import java.time.ZoneId;
+        import java.time.format.DateTimeFormatter;
+        import java.util.Calendar;
 
 
         public class MyInfos2 extends AppCompatActivity {
@@ -42,6 +41,15 @@
                 }
             });
 
+
+            //Calculate age from bDate
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate bDate = LocalDate.parse(currentUser.getbDate(), formatter);
+            LocalDate currentDate = Instant.ofEpochMilli(Calendar.getInstance().getTime().getTime())
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+
+
             userUsername = findViewById(R.id.username);
             userIdade = findViewById(R.id.Idade);
             userAltura = findViewById(R.id.Altura);
@@ -52,10 +60,11 @@
             userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             rootRef = FirebaseDatabase.getInstance().getReference("Users");
 
-            name.setText(profileUser.getfName() + " " + profileUser.getlName());
-            age.setText(String.valueOf(Period.between(bDate, currentDate).getYears()));
-            weight.setText(String.valueOf(profileUser.getWeight()));
-            height.setText(String.valueOf(profileUser.getHeight()));
+            userUsername.setText(currentUser.getfName() + " " + currentUser.getlName());
+            userIdade.setText(String.valueOf(Period.between(bDate, currentDate).getYears()));
+            userEmail.setText(String.valueOf(currentUser.getEmail()));
+            userAltura.setText(String.valueOf(currentUser.getHeight()));
+            userPeso.setText(String.valueOf(currentUser.getHeight()));
 
         };
 
