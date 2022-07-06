@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.projetodum.classes.Exercises;
 import com.example.projetodum.classes.ExercisesAdapter;
 import com.example.projetodum.classes.PlayerAdapter;
+import com.example.projetodum.classes.RecyclerViewInterface;
 import com.example.projetodum.classes.Schedule;
 import com.example.projetodum.classes.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class PlayerProfile extends AppCompatActivity {
+public class PlayerProfile extends AppCompatActivity implements RecyclerViewInterface {
 
     private TextView name, age, weight, height, imc, bw, email;
     private User profileUser, user;
@@ -71,7 +72,7 @@ public class PlayerProfile extends AppCompatActivity {
         recyclerView = findViewById(R.id.scheduleList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        myAdapter = new PlayerAdapter(this, list);
+        myAdapter = new PlayerAdapter(this, list, this);
         recyclerView.setAdapter(myAdapter);
 
         //Calculate age from bDate
@@ -276,5 +277,60 @@ public class PlayerProfile extends AppCompatActivity {
                     });
 
         }
+    }
+
+    @Override
+    public void onItemClick(int position, Button favorite) {
+
+        Exercises exercise = list.get(position);
+
+        mDatabase.getReference("UserLike").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<String> entries = new ArrayList<>();
+                int pos = 0;
+                boolean exists = false;
+                if(snapshot.exists()) {
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        entries.add(dataSnapshot.getValue().toString());
+                        if(dataSnapshot.getValue().toString().equals(exercise.getEid())){
+                            exists = true;
+                            mDatabase.getReference("UserLike").child(mAuth.getCurrentUser().getUid())
+                                    .child(String.valueOf(pos)).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            favorite.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24);
+                                        }
+                                    });
+                        }
+                        pos++;
+                    }
+                    if(!exists) {
+                        mDatabase.getReference("UserLike").child(mAuth.getCurrentUser().getUid())
+                                .child(String.valueOf(pos+1)).setValue(exercise.getEid()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        favorite.setBackgroundResource(R.drawable.ic_baseline_favorite_ticked_24);
+                                    }
+                                });
+                    }
+                } else {
+                    mDatabase.getReference("UserLike").child(mAuth.getCurrentUser().getUid())
+                            .child(String.valueOf(pos)).setValue(exercise.getEid()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    favorite.setBackgroundResource(R.drawable.ic_baseline_favorite_ticked_24);
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Cancelled", error.getMessage());
+
+            }
+        });
+
     }
 }

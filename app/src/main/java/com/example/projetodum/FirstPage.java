@@ -11,6 +11,7 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.example.projetodum.classes.Adapter;
 import com.example.projetodum.classes.Exercises;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 
 public class FirstPage extends AppCompatActivity {
 
-    private Button createExercise, profile, search;
+    private LinearLayout createExercise, profile, search;
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private ExercisesAdapter myAdapter;
@@ -53,6 +54,22 @@ public class FirstPage extends AppCompatActivity {
         myAdapter = new ExercisesAdapter(this, list);
         recyclerView.setAdapter(myAdapter);
 
+        mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User tmp = snapshot.getValue(User.class);
+                if(tmp.getHeight() == 0 || tmp.getWeight() == 0){
+                    startActivity(new Intent(FirstPage.this, CompleteInfo.class). putExtra("flag", 1));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Cancelled", error.getMessage());
+
+            }
+        });
+
         mDatabase.getReference("Exercises").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -71,7 +88,7 @@ public class FirstPage extends AppCompatActivity {
             }
         });
 
-        if(Login.isAdmin != 1) createExercise.setVisibility(View.INVISIBLE);
+        if(Login.isAdmin != 1) createExercise.setVisibility(View.GONE);
 
 
 
