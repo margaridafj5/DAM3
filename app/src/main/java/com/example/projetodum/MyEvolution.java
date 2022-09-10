@@ -160,7 +160,18 @@ public class MyEvolution extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 User user = snapshot.getValue(User.class);
+                                String mAltura = String.valueOf(user.getHeight());
                                 user.setWeight(Double.parseDouble(weight));
+
+                                float heightValue = Float.parseFloat(mAltura);
+                                float weightValue = Float.parseFloat(weight);
+                                float bmi =  weightValue / (heightValue*heightValue);
+
+                                int a= (int) heightValue;
+                                int bw = (int) (2.2 * bmi + bmi/5 + heightValue);
+
+                                user.setBW(bw);
+                                user.setIMC(bmi);
 
                                 mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid())
                                         .setValue(user);

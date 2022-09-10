@@ -78,6 +78,16 @@ public class CompleteInfo extends AppCompatActivity {
                 user.setWeight(Double.parseDouble(mPeso));
                 user.setHeight(Double.parseDouble(mAltura));
 
+                float heightValue = Float.parseFloat(mAltura);
+                float weightValue = Float.parseFloat(mPeso);
+                float bmi =  weightValue / (heightValue*heightValue);
+
+                int a= (int) heightValue;
+                int bw = (int) (2.2 * bmi + bmi/5 + heightValue);
+
+                user.setBW(bw);
+                user.setIMC(bmi);
+
                 mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

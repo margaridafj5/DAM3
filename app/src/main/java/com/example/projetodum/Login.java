@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
-    Button login;
+    Button login, test;
     EditText email, password;
     FirebaseDatabase database;
     FirebaseAuth mAuth;
@@ -44,6 +44,7 @@ public class Login extends AppCompatActivity {
         login = findViewById(R.id.loginSubmit);
         email = findViewById(R.id.loginEmail);
         password = findViewById(R.id.loginPassword);
+        test = findViewById(R.id.test1);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,11 +57,9 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Login", "Clicked");
                 logUser();
             }
         });
-
 
 
     }

@@ -113,3 +113,4 @@ public class Search extends AppCompatActivity implements UserAdapter.OnNoteListe
         startActivity(new Intent(Search.this, PlayerProfile.class).putExtra("user", userList.get(position)));
     }
 }
+
