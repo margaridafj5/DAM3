@@ -56,6 +56,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("Login", "Clicked");
                 logUser();
             }
         });
@@ -110,7 +111,7 @@ public class Login extends AppCompatActivity {
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
-                                    Log.d("Cancelled", error.toString());
+                                    Log.d("Cancelled", error.getMessage());
                                 }
                             });
 

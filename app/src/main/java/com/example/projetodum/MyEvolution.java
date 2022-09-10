@@ -106,7 +106,6 @@ public class MyEvolution extends AppCompatActivity {
 
                             }
 
-                            System.out.println(data);
                             LineDataSet dataSet = new LineDataSet(data, "Your weight");
                             LineData lineData = new LineData(dataSet);
                             chart.setData(lineData);
@@ -148,7 +147,6 @@ public class MyEvolution extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println();
                 String weight = String.valueOf(newWeight.getText()).trim();
 
                 if(weight.isEmpty()){

@@ -65,7 +65,7 @@ public class MyInfos extends AppCompatActivity {
                         userIdade.setText(String.valueOf(Period.between(bDate, currentDate).getYears()));
                         userEmail.setText(String.valueOf(currentUser.getEmail()));
                         userAltura.setText(String.valueOf(currentUser.getHeight()));
-                        userPeso.setText(String.valueOf(currentUser.getHeight()));
+                        userPeso.setText(String.valueOf(currentUser.getWeight()));
                     }
 
                     @Override

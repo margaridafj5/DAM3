@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="17dp"
-        android:text="Your heigh in cm:"
+        android:text="Your heigh in meters:"
         android:layout_marginHorizontal="25dp"/>
     <EditText
         android:id="@+id/height"

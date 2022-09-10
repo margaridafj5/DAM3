@@ -37,15 +37,16 @@ public class Follow extends AppCompatActivity implements Adapter.OnNoteListener 
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+        //initializing recycler view
         recyclerView = findViewById(R.id.followList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         list = new ArrayList<>();
         myAdapter = new Adapter(this, list, this);
         recyclerView.setAdapter(myAdapter);
 
 
+        //finding the list of users this user is currently following and passing it to the method that's going to display it in the recycler view
         mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -63,11 +64,13 @@ public class Follow extends AppCompatActivity implements Adapter.OnNoteListener 
 
     }
 
+    //redirecting to following user profile when clicked
     @Override
     public void onNoteClick(int position) {
         startActivity(new Intent(Follow.this, PlayerProfile.class).putExtra("user", list.get(position)));
     }
 
+    //method used to display the following list in the recycler view
     private void addUser(List<String> tempList) {
 
         list.clear();

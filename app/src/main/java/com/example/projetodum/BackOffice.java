@@ -32,6 +32,8 @@ public class BackOffice extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back_office);
 
+
+        //storing elements in variables
         eName = findViewById(R.id.exerciseName);
         enPeople = findViewById(R.id.exercisenPeople);
         eDescription = findViewById(R.id.exerciseDescription);
@@ -41,6 +43,8 @@ public class BackOffice extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance().getReference();
 
+
+        //if user is not admin, redirect to first page
         if(Login.isAdmin != 1) {
             Log.d("Redirect", "Not Admin");
             startActivity(new Intent(BackOffice.this, FirstPage.class));
@@ -56,11 +60,15 @@ public class BackOffice extends AppCompatActivity {
     }
 
     public void submitExercise(){
+
+        //storing content in variables
         String name = eName.getText().toString().trim();
         String description = eDescription.getText().toString().trim();
         String calories = eCalories.getText().toString().trim();
         String nPeople = enPeople.getText().toString().trim();
 
+
+        //content verification
         if(name.isEmpty()) {
             eName.setError("Insert the name of the exercise");
             eName.requestFocus();
@@ -85,9 +93,13 @@ public class BackOffice extends AppCompatActivity {
             return;
         }
 
+
+        //creating an unique id for the exercises and creating an object
         String eID = UUID.randomUUID().toString();
         Exercises exercise = new Exercises(name, description, Integer.parseInt(calories), Integer.parseInt(nPeople), eID);
 
+
+        //storing the exercise in the database and clearing the elements' text
         database.child("Exercises").child(eID).setValue(exercise).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

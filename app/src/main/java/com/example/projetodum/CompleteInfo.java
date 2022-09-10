@@ -31,7 +31,7 @@ public class CompleteInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_info);
 
-
+        //storing elements in variables
         peso = findViewById(R.id.Peso);
         altura = findViewById(R.id.Altura);
         submit = findViewById(R.id.submit);
@@ -48,9 +48,12 @@ public class CompleteInfo extends AppCompatActivity {
 
     private void completeInfo() {
 
+        //storing user's input in variables
         String mPeso = String.valueOf(peso.getText());
         String mAltura = String.valueOf(altura.getText());
 
+
+        //input verification
         if(mPeso.isEmpty()) {
             peso.setError("Obligatory field");
             peso.requestFocus();
@@ -66,6 +69,8 @@ public class CompleteInfo extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
 
+
+        //storing the user's input in the database and redirecting back to the first page
         mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

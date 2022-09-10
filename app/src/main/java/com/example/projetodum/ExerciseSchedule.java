@@ -45,6 +45,7 @@ public class ExerciseSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_schedule);
 
+        //storing elements in variables
         exerciseName = findViewById(R.id.eName);
         exerciseDescription = findViewById(R.id.eDescription);
         exerciseNumber = findViewById(R.id.eNumber);
@@ -53,8 +54,10 @@ public class ExerciseSchedule extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
 
+        //getting the object of the exercise we were redirected from
         exercise = (Exercises) getIntent().getSerializableExtra("exercise");
 
+        //displaying the exercise's info
         exerciseName.setText(exercise.getName());
         exerciseDescription.setText(exercise.getDescription());
         exerciseNumber.setText(String.valueOf(exercise.getnPeople()));
@@ -69,15 +72,19 @@ public class ExerciseSchedule extends AppCompatActivity {
 
         Uid = mAuth.getCurrentUser().getUid();
 
+        //verifying if the user has already scheduled this exercise, and if he did, disabling the schedule button
         mDatabase.getReference("UserExercise").child(Uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+
+                    //verify
                     for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Schedule schedule = dataSnapshot.getValue(Schedule.class);
                         exerciseList.add(schedule.getEid());
                     }
 
+                    //disable
                     if(exerciseList.contains(exercise.getEid())) {
                         scheduleButton.setEnabled(false);
                         scheduleButton.setText("Already Scheduled");
@@ -94,6 +101,7 @@ public class ExerciseSchedule extends AppCompatActivity {
 
     }
 
+    //method for displaying the date time dialog and store the schedule in the database
     private void showDateTimeDialog() {
 
         Calendar calendar = Calendar.getInstance();
@@ -113,6 +121,8 @@ public class ExerciseSchedule extends AppCompatActivity {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yy HH:mm");
                         if(exerciseList.isEmpty()) {
                             Schedule schedule = new Schedule(exercise.getEid(), 0, simpleDateFormat.format(calendar.getTime()));
+
+                            //storing the schedule in the database if it doesn't exist already
                             mDatabase.getReference("UserExercise").child(Uid).child("0").setValue(schedule).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -121,6 +131,8 @@ public class ExerciseSchedule extends AppCompatActivity {
                                 }
                             });
                         } else {
+
+                            //if schedule already exists, disable button
                             Schedule schedule = new Schedule(exercise.getEid(), 0, simpleDateFormat.format(calendar.getTime()));
                             mDatabase.getReference("UserExercise").child(Uid).child(String.valueOf(exerciseList.size())).setValue(schedule).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

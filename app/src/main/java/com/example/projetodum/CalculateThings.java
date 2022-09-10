@@ -19,6 +19,11 @@ public class CalculateThings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_things);
 
+        /*
+        * this page is just two buttons redirecting to their respective pages
+        *  */
+
+
         IMC= findViewById(R.id.IMC);
 
         IMC.setOnClickListener(new View.OnClickListener() {

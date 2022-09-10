@@ -39,21 +39,26 @@ public class FirstPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
 
-        System.out.println(Login.isAdmin);
-
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
 
+        //initialize recyclerview
         recyclerView = findViewById(R.id.exerciseList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         list = new ArrayList<>();
+
+        //storing elements in variables and initializing the recycler view's adapter
         search = findViewById(R.id.search);
         createExercise = findViewById(R.id.createExercise);
         profile = findViewById(R.id.profile);
         myAdapter = new ExercisesAdapter(this, list);
         recyclerView.setAdapter(myAdapter);
 
+        /*
+        * verifying if the user has a weight and a height
+        * normally the user won't have set a weight and a height if it's their first time opening the application
+        * this redirect won't happen in subsequent connections
+        */
         mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -70,6 +75,7 @@ public class FirstPage extends AppCompatActivity {
             }
         });
 
+        //storing all exercises available in the database in a list to be displayed by the recycler view
         mDatabase.getReference("Exercises").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -88,10 +94,13 @@ public class FirstPage extends AppCompatActivity {
             }
         });
 
+        //the create exercise button will only appear if the user is admin
         if(Login.isAdmin != 1) createExercise.setVisibility(View.GONE);
 
 
 
+
+        //redirects
         createExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

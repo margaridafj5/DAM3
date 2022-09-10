@@ -30,6 +30,7 @@ public class IMCcalcular extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imccalcular);
 
+        //storing elements in variables
         height = findViewById(R.id.height);
         weight = findViewById(R.id.weight);
         calculate = findViewById(R.id.calc);
@@ -40,6 +41,7 @@ public class IMCcalcular extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+        //finding the user's height and weight and filling the elements with its values
         mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -66,11 +68,14 @@ public class IMCcalcular extends AppCompatActivity {
     }
 
     private void calculateIMC () {
+
+        //storing user's input in variables
         String heightStr = height.getText().toString();
         String weightStr= weight.getText().toString();
 
+        //IMC formula
         if (heightStr!= null && !"".equals(heightStr) && weightStr != null && !"".equals(weightStr)){
-            float heightValue = Float.parseFloat(heightStr) / 100;
+            float heightValue = Float.parseFloat(heightStr);
             float weightValue = Float.parseFloat(weightStr);
 
             float bmi =  weightValue / (heightValue*heightValue);
@@ -78,6 +83,7 @@ public class IMCcalcular extends AppCompatActivity {
         }
     }
 
+    //method used to categorize the user's IMC value
     private void displayBMI(float bmi){
         String bmiLabel= "";
 

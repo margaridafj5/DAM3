@@ -34,6 +34,8 @@ public class BWcalcular extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bwcalcular);
 
+
+        //storing the elements in variables
         height = findViewById(R.id.height);
         weight = findViewById(R.id.weight);
         calculate = findViewById(R.id.calc);
@@ -42,6 +44,8 @@ public class BWcalcular extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+
+        //finding the user's height and weight to automatically fill the elements
         mDatabase.getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -63,11 +67,14 @@ public class BWcalcular extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //storing the user's input in variables
                 String heightStr = String.valueOf(height.getText());
                 String weightStr= String.valueOf(weight.getText());
 
+
+                //bw formula and display
                 if (heightStr!= null && !"".equals(heightStr) && weightStr != null && !"".equals(weightStr)){
-                    float heightValue = Float.parseFloat(heightStr) / 100;
+                    float heightValue = Float.parseFloat(heightStr);
                     float weightValue = Float.parseFloat(weightStr);
                     float bmi =  weightValue / (heightValue*heightValue);
 
